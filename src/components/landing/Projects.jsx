@@ -96,18 +96,6 @@ function ProjectCard({ project }) {
         }}
       />
 
-      {/* Tag top-right */}
-      <div
-        className="absolute top-3 right-3 text-white font-semibold px-2.5 py-1 rounded-full"
-        style={{
-          background: "rgba(124,58,237,0.75)",
-          backdropFilter: "blur(8px)",
-          fontSize: "10px",
-          border: "1px solid rgba(167,139,250,0.3)",
-        }}
-      >
-        {project.tag}
-      </div>
 
       {/* Bottom info */}
       <div className="absolute bottom-0 inset-x-0 px-4 py-3 flex items-end justify-between">
