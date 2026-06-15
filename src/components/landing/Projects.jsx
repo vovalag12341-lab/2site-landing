@@ -1,48 +1,52 @@
 import { useRef, useState } from "react";
 import { ExternalLink, Clock } from "lucide-react";
 
+// thum.io: free screenshot service, returns real page thumbnails
+const thumb = (url) =>
+  `https://image.thum.io/get/width/640/crop/480/${url}`;
+
 const projects = [
   {
     name: "בית הפנקייק המקורי",
     type: "בניית אתרים",
     tag: "מסעדנות",
     url: "https://pancake.co.il",
-    image: "https://ugc.base44.com/prod/attachments/2d90e7d3-9ba7-4d66-9e9f-98cf8a9c0f40_Screenshot%202025-05-21%20at%2014.09.31.png",
+    image: thumb("https://pancake.co.il"),
   },
   {
     name: "Elysian Softech",
     type: "בניית אתרים",
     tag: "טכנולוגיה",
     url: "https://elysian-softech.com",
-    image: "https://ugc.base44.com/prod/attachments/b02d2040-64d4-4b22-a6b0-aa5a1a2f7c3e_Screenshot%202025-05-21%20at%2014.10.00.png",
+    image: thumb("https://elysian-softech.com"),
   },
   {
     name: "הומלי",
     type: "בניית אתרים",
     tag: "ריהוט ועיצוב",
     url: "https://home-li.co.il",
-    image: "https://ugc.base44.com/prod/attachments/c1a5f9b8-2f3e-4d1a-8e7c-6b5d3f2a1e9d_Screenshot%202025-05-21%20at%2014.10.15.png",
+    image: thumb("https://home-li.co.il"),
   },
   {
     name: "מופון ישראל",
     type: "בניית אתרים",
     tag: "שירותים",
     url: "https://mufonisrael.com",
-    image: "https://ugc.base44.com/prod/attachments/d3e7f1a2-5c8b-4e9d-b6a0-7f2c1d8e3f4a_Screenshot%202025-05-21%20at%2014.10.30.png",
+    image: thumb("https://mufonisrael.com"),
   },
   {
-    name: "האקדמיה לתזונת תינוקות | ד״ר גילה רוזן",
+    name: "ד״ר גילה רוזן | תזונת תינוקות",
     type: "בניית אתרים",
     tag: "בריאות",
     url: null,
-    image: "https://ugc.base44.com/prod/attachments/e4f8a2b3-6d9c-4f0e-c7b1-8a3d2e9f4a5b_Screenshot%202025-05-21%20at%2014.10.45.png",
+    image: null,
   },
   {
     name: "Group Miller",
     type: "בניית אתרים",
-    tag: "עסקים",
+    tag: "נדל״ן",
     url: "https://g-miller.net",
-    image: "https://ugc.base44.com/prod/attachments/f5a9b3c4-7e0d-4a1f-d8c2-9b4e3f0a5b6c_Screenshot%202025-05-21%20at%2014.11.00.png",
+    image: thumb("https://g-miller.net"),
   },
 ];
 
@@ -69,7 +73,7 @@ function ProjectCard({ project }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Screenshot thumbnail */}
-      {!imgError ? (
+      {project.image && !imgError ? (
         <img
           src={project.image}
           alt={project.name}
@@ -78,12 +82,12 @@ function ProjectCard({ project }) {
           draggable={false}
         />
       ) : (
-        /* Fallback mockup if image fails */
         <div className="w-full h-full flex items-center justify-center"
-          style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(99,102,241,0.08) 100%)" }}>
+          style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(168,85,247,0.10) 50%, rgba(236,72,153,0.08) 100%)" }}>
           <div className="text-center px-4">
-            <div className="text-4xl mb-3">🖥️</div>
-            <div className="text-white font-bold text-sm">{project.name}</div>
+            <div className="text-3xl mb-2">🌐</div>
+            <div className="text-white font-bold text-xs leading-tight">{project.name}</div>
+            <div className="text-purple-400 text-xs mt-1">בניית אתרים</div>
           </div>
         </div>
       )}
