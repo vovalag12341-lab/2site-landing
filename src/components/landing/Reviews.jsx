@@ -1,127 +1,131 @@
-import { useState } from "react";
-import { Star, ChevronRight, ChevronLeft, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const reviews = [
   {
-    name: "דנה לוי",
-    role: "בעלת קליניקה",
-    text: "2site שינו לי את החיים. האתר שלי נראה מדהים, ה-SEO עלה פלאים ואני מקבלת פניות חדשות כל יום. השירות מקצועי ומהיר.",
+    name: "ענת פינקו",
+    text: "עובדת עם 2site גם לצורך אישי וגם במסגרת החברה שבה אני עובדת. חברה שנותנת מענה מקצועי, מקיף וזמינות גבוהה.",
     stars: 5,
-    avatar: "ד",
+    initials: "ע",
+    color: "#7c3aed",
   },
   {
-    name: "יוסי כהן",
-    role: "עורך דין",
-    text: "ניסיתי שלושה ספקים לפני 2site. ההבדל עצום — הם מגיבים מהר, מבינים מה אני צריך ומספקים תוצאות אמיתיות.",
+    name: "שרון לוי שלום",
+    text: "חברה מצויינת, שירות אישי, מהיר, יעיל ולא מתפשר על איכות.",
     stars: 5,
-    avatar: "י",
+    initials: "ש",
+    color: "#a855f7",
   },
   {
-    name: "מיכל ברק",
-    role: "מסעדנית",
-    text: "האתר שקיבלתי עקף את כל הציפיות. התפריט האונליין, מערכת ההזמנות — הכל עובד חלק. ממליצה בחום.",
+    name: "Itay Margolin",
+    text: "2site מקצועיים ואדיבים, החל מתהליך ההיכרות ועד מסירת האתר. היו קשובים לצרכים וזמינים. תודה רבה על הכל.",
     stars: 5,
-    avatar: "מ",
+    initials: "I",
+    color: "#6366f1",
   },
   {
-    name: "אבי שמיר",
-    role: "יזם נדל\"ן",
-    text: "שילמתי פחות ממה שציפיתי וקיבלתי הרבה יותר. האתר מושך לידים, וצוות התמיכה תמיד זמין.",
+    name: "לינה אמין",
+    text: "חוויה מעולה! שירות מהיר, יחס אישי וסבלנות אין קץ. תודה על אתר מהמם.",
     stars: 5,
-    avatar: "א",
+    initials: "ל",
+    color: "#ec4899",
   },
   {
-    name: "נועה גרין",
-    role: "מעצבת אופנה",
-    text: "האתר שלי הוא הפנים של המותג שלי. 2site הבינו את הוויזיה שלי ויצרו משהו שאני גאה להראות לכל לקוח.",
+    name: "Global Diving Tours",
+    text: "שירות מעולה, אתר ממיר, היה מוכן תוך ימים בודדים, ביצועים טובים גם בקמפיין. מומלץ בחום.",
     stars: 5,
-    avatar: "נ",
+    initials: "G",
+    color: "#8b5cf6",
+  },
+  {
+    name: "Sam P",
+    text: "ממליץ בחום על החברה, שירות מעולה ותמיד זמינים לכל מטרה.",
+    stars: 5,
+    initials: "S",
+    color: "#a78bfa",
+  },
+  {
+    name: "Geila Rozen",
+    text: "שמחה שמצאתי את 2site לצורך הקמת האתר וניהולו. מקצוענות בלתי מתפשרת, סבלנות ואנשים טובים.",
+    stars: 5,
+    initials: "G",
+    color: "#c084fc",
+  },
+  {
+    name: "מיר ויצמן",
+    text: "שירות מקצועי עם זמינות גבוהה.",
+    stars: 5,
+    initials: "מ",
+    color: "#818cf8",
+  },
+  {
+    name: "Yossi Rosenblum",
+    text: "ממליץ בחום. וובה עשה עבודה מדהימה. חברה מקצועית, יסודית והוגנת.",
+    stars: 5,
+    initials: "Y",
+    color: "#7c3aed",
   },
 ];
 
+function ReviewCard({ review }) {
+  return (
+    <div
+      className="flex-shrink-0 rounded-2xl p-5 w-72"
+      style={{
+        background: "#0e0d1a",
+        border: "1px solid rgba(124,58,237,0.12)",
+      }}
+    >
+      {/* Google logo + stars */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex gap-0.5">
+          {Array.from({ length: review.stars }).map((_, i) => (
+            <Star key={i} size={13} className="fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+        <span className="text-xs text-gray-600 font-medium">Google</span>
+      </div>
+
+      <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">"{review.text}"</p>
+
+      <div className="flex items-center gap-2.5">
+        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+          style={{ background: `linear-gradient(135deg, ${review.color}, ${review.color}99)` }}>
+          {review.initials}
+        </div>
+        <div>
+          <div className="text-white text-xs font-semibold">{review.name}</div>
+          <div className="text-gray-600 text-xs">ביקורת מאומתת</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Reviews() {
-  const [idx, setIdx] = useState(0);
-
-  const prev = () => setIdx((i) => (i === 0 ? reviews.length - 1 : i - 1));
-  const next = () => setIdx((i) => (i === reviews.length - 1 ? 0 : i + 1));
-
-  const r = reviews[idx];
+  const doubled = [...reviews, ...reviews];
 
   return (
-    <section id="reviews" className="py-24 px-6" style={{ background: "#050505" }}>
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="inline-block bg-yellow-500/10 border border-yellow-500/20 rounded-full px-4 py-1.5 text-yellow-400 text-xs font-semibold tracking-widest uppercase mb-4">
-            מה לקוחות אומרים
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white">
-            <span className="gradient-text">150+</span> עסקים מרוצים
-          </h2>
+    <section id="reviews" className="py-24 overflow-hidden" style={{ background: "#07070f" }}>
+      <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
+        <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
+          style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+          ביקורות Google
         </div>
-
-        <div
-          className="relative rounded-3xl p-10 text-center"
-          style={{
-            background: "linear-gradient(135deg, #111 0%, #0d0d0d 100%)",
-            border: "1px solid rgba(212,160,23,0.15)",
-          }}
-        >
-          <Quote className="text-yellow-500/20 mx-auto mb-6" size={48} />
-
-          <p className="text-xl text-gray-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-            "{r.text}"
-          </p>
-
-          <div className="flex items-center justify-center gap-1 mb-6">
-            {Array.from({ length: r.stars }).map((_, i) => (
-              <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
-            ))}
+        <h2 className="text-3xl md:text-5xl font-black text-white mb-3">
+          מה הלקוחות <span className="brand-gradient-text">אומרים עלינו</span>
+        </h2>
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <div className="flex gap-0.5">
+            {[0,1,2,3,4].map(i => <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />)}
           </div>
-
-          <div className="flex items-center justify-center gap-3">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm"
-              style={{ background: "linear-gradient(135deg, #D4A017, #F5D06E)" }}
-            >
-              {r.avatar}
-            </div>
-            <div className="text-right">
-              <div className="text-white font-bold text-sm">{r.name}</div>
-              <div className="text-gray-500 text-xs">{r.role}</div>
-            </div>
-          </div>
-
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {reviews.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIdx(i)}
-                className="rounded-full transition-all duration-300"
-                style={{
-                  width: i === idx ? "24px" : "8px",
-                  height: "8px",
-                  background: i === idx ? "#D4A017" : "rgba(255,255,255,0.15)",
-                }}
-              />
-            ))}
-          </div>
+          <span className="text-white font-bold">5.0</span>
+          <span className="text-gray-500 text-sm">· {reviews.length} ביקורות Google</span>
         </div>
+      </div>
 
-        {/* Arrow nav */}
-        <div className="flex justify-center gap-3 mt-6">
-          <button
-            onClick={prev}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 hover:text-yellow-400 transition-all"
-          >
-            <ChevronRight size={16} />
-          </button>
-          <button
-            onClick={next}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 hover:text-yellow-400 transition-all"
-          >
-            <ChevronLeft size={16} />
-          </button>
+      <div className="relative overflow-hidden" style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)" }}>
+        <div className="reviews-track">
+          {doubled.map((r, i) => <ReviewCard key={i} review={r} />)}
         </div>
       </div>
     </section>

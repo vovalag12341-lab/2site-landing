@@ -1,125 +1,102 @@
-import { useState } from "react";
-import { ChevronRight, ChevronLeft, ExternalLink } from "lucide-react";
-
 const projects = [
-  {
-    title: "בוטיק מינימל",
-    category: "חנות אונליין",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
-    tag: "WooCommerce",
-  },
-  {
-    title: "קליניקת פרימיום",
-    category: "שירותי בריאות",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80",
-    tag: "WordPress",
-  },
-  {
-    title: "משרד עורכי דין",
-    category: "שירותים מקצועיים",
-    image: "https://images.unsplash.com/photo-1562564055-71e051d33c19?w=600&q=80",
-    tag: "Business",
-  },
-  {
-    title: "מסעדת שף",
-    category: "מזון ואירוח",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
-    tag: "Restaurant",
-  },
-  {
-    title: "סטודיו יוגה",
-    category: "כושר ובריאות",
-    image: "https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80",
-    tag: "Booking",
-  },
-  {
-    title: "חברת נדל\"ן",
-    category: "נדל\"ן",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
-    tag: "Real Estate",
-  },
+  { name: "בית הפנקייק המקורי", type: "אתר תדמית + מנו", tag: "מסעדנות", color: "#7c3aed" },
+  { name: "Elysian Softech", type: "אתר תוכן + SEO", tag: "טכנולוגיה", color: "#a855f7" },
+  { name: "הומלי", type: "אתר שירותים", tag: "ריהוט ועיצוב", color: "#6366f1" },
+  { name: "מופון ישראל", type: "אתר תוכן מורחב", tag: "שירותים", color: "#8b5cf6" },
+  { name: "ד״ר גילה רוזן", type: "אתר קליניקה", tag: "בריאות", color: "#a78bfa" },
+  { name: "Group Miller", type: "אתר תדמית", tag: "עסקים", color: "#7c3aed" },
+  { name: "Nadlan FL", type: "אתר נדל״ן + SEO", tag: "נדל״ן", color: "#ec4899" },
+  { name: "דרך השף", type: "אתר שירותי קייטרינג", tag: "קולינריה", color: "#f472b6" },
+  { name: "Top Safe", type: "אתר תוכן + לידים", tag: "ביטחון", color: "#c084fc" },
+  { name: "Living Group Webinars", type: "אתר ווביניארים", tag: "חינוך", color: "#818cf8" },
 ];
 
+// Visual mockup card per project
+function ProjectCard({ project }) {
+  const initials = project.name.slice(0, 2);
+  return (
+    <div
+      className="flex-shrink-0 rounded-2xl overflow-hidden cursor-default select-none"
+      style={{
+        width: "260px",
+        background: "#0e0d1a",
+        border: "1px solid rgba(124,58,237,0.15)",
+        transition: "all 0.3s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = `${project.color}60`;
+        e.currentTarget.style.boxShadow = `0 0 30px ${project.color}20`;
+        e.currentTarget.style.transform = "translateY(-4px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(124,58,237,0.15)";
+        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      {/* Thumbnail area */}
+      <div className="relative h-36 flex items-center justify-center overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${project.color}18 0%, ${project.color}08 100%)` }}>
+        <div className="absolute inset-0 grid-bg opacity-40" />
+        {/* Mock browser */}
+        <div className="relative w-36 rounded-lg overflow-hidden"
+          style={{ background: "#12111e", border: `1px solid ${project.color}30` }}>
+          <div className="flex items-center gap-1 px-2 py-1.5" style={{ background: "#0a091a" }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
+            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
+          </div>
+          <div className="p-2">
+            <div className="h-6 w-full rounded mb-1.5"
+              style={{ background: `linear-gradient(135deg, ${project.color}40, ${project.color}20)` }} />
+            <div className="h-1.5 w-full rounded mb-1" style={{ background: "rgba(255,255,255,0.08)" }} />
+            <div className="h-1.5 w-3/4 rounded mb-1" style={{ background: "rgba(255,255,255,0.05)" }} />
+            <div className="grid grid-cols-3 gap-1 mt-2">
+              {[0,1,2].map(i => (
+                <div key={i} className="h-5 rounded" style={{ background: `${project.color}20` }} />
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Tag badge */}
+        <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-0.5 rounded-full text-white"
+          style={{ background: `${project.color}70`, backdropFilter: "blur(8px)" }}>
+          {project.tag}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="p-4">
+        <h3 className="text-white font-bold text-sm mb-1">{project.name}</h3>
+        <p className="text-gray-500 text-xs">{project.type}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
-  const [idx, setIdx] = useState(0);
-  const visible = 3;
-
-  const prev = () => setIdx((i) => Math.max(0, i - 1));
-  const next = () => setIdx((i) => Math.min(projects.length - visible, i + 1));
-
-  const shown = projects.slice(idx, idx + visible);
+  const doubled = [...projects, ...projects];
 
   return (
-    <section id="projects" className="py-24 px-6" style={{ background: "#050505" }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-end justify-between mb-14">
-          <div>
-            <div className="inline-block bg-yellow-500/10 border border-yellow-500/20 rounded-full px-4 py-1.5 text-yellow-400 text-xs font-semibold tracking-widest uppercase mb-4">
-              פרויקטים אחרונים
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-white">
-              עבודות <span className="gradient-text">שמדברות</span> בעד עצמן
-            </h2>
+    <section id="projects" className="py-24 overflow-hidden" style={{ background: "#05050d" }}>
+      <div className="max-w-6xl mx-auto px-5 mb-12">
+        <div className="text-center">
+          <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
+            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+            פרויקטים אחרונים
           </div>
-          <div className="hidden md:flex gap-2">
-            <button
-              onClick={prev}
-              disabled={idx === 0}
-              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 hover:text-yellow-400 disabled:opacity-20 transition-all"
-            >
-              <ChevronRight size={16} />
-            </button>
-            <button
-              onClick={next}
-              disabled={idx >= projects.length - visible}
-              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 hover:text-yellow-400 disabled:opacity-20 transition-all"
-            >
-              <ChevronLeft size={16} />
-            </button>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-white">
+            פרויקטים אחרונים <span className="brand-gradient-text">שבנינו</span>
+          </h2>
         </div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {shown.map((p) => (
-            <div
-              key={p.title}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer"
-              style={{ background: "#111" }}
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 right-0 p-5 w-full">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-yellow-400 text-xs font-semibold mb-1">{p.category}</div>
-                    <h3 className="text-white font-bold text-lg">{p.title}</h3>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink size={12} className="text-yellow-400" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-xs text-gray-300 px-3 py-1 rounded-full border border-white/10">
-                {p.tag}
-              </div>
-            </div>
+      {/* Marquee */}
+      <div className="relative overflow-hidden" style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+        <div className="marquee-track gap-5 py-2">
+          {doubled.map((p, i) => (
+            <ProjectCard key={i} project={p} />
           ))}
-        </div>
-
-        {/* Mobile arrows */}
-        <div className="flex justify-center gap-3 mt-8 md:hidden">
-          <button onClick={prev} disabled={idx === 0} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 disabled:opacity-20">
-            <ChevronRight size={16} />
-          </button>
-          <button onClick={next} disabled={idx >= projects.length - 1} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-yellow-500/50 disabled:opacity-20">
-            <ChevronLeft size={16} />
-          </button>
         </div>
       </div>
     </section>
