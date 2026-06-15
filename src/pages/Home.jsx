@@ -24,10 +24,10 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Clients />
+        <ClientLogos />
         <Pricing />
         <Projects />
         <Benefits />
-        <ClientLogos />
         <Reviews />
         <Process />
         <FAQ />
