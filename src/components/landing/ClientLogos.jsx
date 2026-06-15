@@ -1,10 +1,15 @@
 const logos = [
-  { name: "Shlomo", sub: "GROUP" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/2f1c9ef40_image.png", name: "שלמה" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/dbb5f351b_image.png", name: "Dive Assure" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/fa3f62b92_image.png", name: "בית הפנקייק" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/b03fde9da_image.png", name: "אלבר" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/24ffd08b2_image.png", name: "Albar logo 2" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/8f781817c_image.png", name: "Logo 4" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/4f6b97708_image.png", name: "Logo 5" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/d9c281d62_image.png", name: "Logo 8" },
+  // text-only logos
   { name: "תלפיות", sub: null },
-  { name: "Albar", sub: null },
-  { name: "בית הפנקייק", sub: "המקורי" },
   { name: "Cardcom", sub: null },
-  { name: "Dive", sub: "TOURS" },
   { name: "Homely", sub: null },
   { name: "Elysian", sub: "Softech" },
   { name: "מופון", sub: "ישראל" },
@@ -15,20 +20,43 @@ const logos = [
   { name: "Global Diving", sub: "Tours" },
 ];
 
-const ITEM_W = 140;
-const SET_WIDTH = logos.length * ITEM_W;
-
 function LogoItem({ logo }) {
+  if (logo.img) {
+    return (
+      <div
+        className="flex-shrink-0 flex items-center justify-center logo-item-img"
+        style={{ width: "130px", height: "64px" }}
+      >
+        <img
+          src={logo.img}
+          alt={logo.name}
+          draggable={false}
+          style={{
+            maxHeight: "52px",
+            maxWidth: "120px",
+            width: "auto",
+            height: "auto",
+            objectFit: "contain",
+            opacity: 0.55,
+            filter: "grayscale(100%) brightness(1.4)",
+            transition: "opacity 0.3s ease, filter 0.3s ease",
+            userSelect: "none",
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
-      className="flex-shrink-0 flex flex-col items-center justify-center logo-item"
-      style={{ width: `${ITEM_W}px`, cursor: "default" }}
+      className="flex-shrink-0 flex flex-col items-center justify-center logo-item-text"
+      style={{ width: "130px", height: "64px", cursor: "default" }}
     >
       <div
-        className="px-4 py-2.5 rounded-xl text-center transition-all duration-300"
+        className="px-4 py-2 rounded-xl text-center transition-all duration-300"
         style={{ border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)" }}
       >
-        <div className="text-gray-400 font-bold leading-tight" style={{ fontSize: "13px", letterSpacing: "0.03em" }}>
+        <div className="text-gray-400 font-bold leading-tight" style={{ fontSize: "12px", letterSpacing: "0.03em" }}>
           {logo.name}
         </div>
         {logo.sub && (
@@ -41,8 +69,11 @@ function LogoItem({ logo }) {
   );
 }
 
+const GAP = 24;
+const ITEM_W = 130 + GAP;
+const SET_WIDTH = logos.length * ITEM_W;
+
 export default function ClientLogos() {
-  // Triple the array for truly gapless loop
   const tripled = [...logos, ...logos, ...logos];
 
   return (
@@ -65,7 +96,7 @@ export default function ClientLogos() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "16px",
+            gap: `${GAP}px`,
             width: "max-content",
             willChange: "transform",
             userSelect: "none",
@@ -79,20 +110,24 @@ export default function ClientLogos() {
 
       <style>{`
         .client-logos-track {
-          animation: clientLogosScroll ${logos.length * 2.2}s linear infinite;
+          animation: clientLogosScroll ${logos.length * 2.5}s linear infinite;
         }
         .client-logos-track:hover {
           animation-play-state: paused;
         }
         @keyframes clientLogosScroll {
           0%   { transform: translateX(0); }
-          100% { transform: translateX(-${SET_WIDTH + 16 * logos.length}px); }
+          100% { transform: translateX(-${SET_WIDTH}px); }
         }
-        .logo-item > div:hover {
+        .logo-item-img:hover img {
+          opacity: 0.9 !important;
+          filter: grayscale(0%) brightness(1) !important;
+        }
+        .logo-item-text > div:hover {
           border-color: rgba(124,58,237,0.3) !important;
           background: rgba(124,58,237,0.06) !important;
         }
-        .logo-item > div:hover .text-gray-400 {
+        .logo-item-text > div:hover .text-gray-400 {
           color: #e5e7eb !important;
         }
       `}</style>
