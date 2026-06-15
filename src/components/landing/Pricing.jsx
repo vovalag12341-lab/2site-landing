@@ -52,23 +52,7 @@ const packages = [
     ],
     note: "ללא דמי הקמה | התחייבות לשנה",
   },
-  {
-    id: "extra",
-    name: "תוכן מורחב Extra SEO",
-    price: "1,200",
-    popular: false,
-    cta: "דברו איתי על Extra",
-    subtitle: null,
-    features: [
-      "אתר WordPress מתקדם עד 20 מסכים",
-      "אפיון מעמיק יותר",
-      "עיצוב מותאם מותג",
-      "מבנה עמודים רחב",
-      "ביצועים, SEO וחוויית משתמש",
-      "גיבויים ועדכונים שוטפים",
-    ],
-    note: "ללא דמי הקמה | התחייבות לשנה",
-  },
+
 ];
 
 export default function Pricing() {
