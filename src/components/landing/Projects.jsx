@@ -1,52 +1,48 @@
 import { useRef, useState } from "react";
 import { ExternalLink, Clock } from "lucide-react";
 
-// thum.io: free screenshot service, returns real page thumbnails
-const thumb = (url) =>
-  `https://image.thum.io/get/width/640/crop/480/${url}`;
-
 const projects = [
   {
     name: "בית הפנקייק המקורי",
     type: "בניית אתרים",
     tag: "מסעדנות",
     url: "https://pancake.co.il",
-    image: thumb("https://pancake.co.il"),
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/fcde9c6ea_Screenshot2026-06-15at125508.png",
   },
   {
     name: "Elysian Softech",
     type: "בניית אתרים",
     tag: "טכנולוגיה",
     url: "https://elysian-softech.com",
-    image: thumb("https://elysian-softech.com"),
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/187f67026_Screenshot2026-06-15at125516.png",
   },
   {
     name: "הומלי",
     type: "בניית אתרים",
-    tag: "ריהוט ועיצוב",
+    tag: "נדל״ן",
     url: "https://home-li.co.il",
-    image: thumb("https://home-li.co.il"),
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/a32d2444a_Screenshot2026-06-15at125522.png",
   },
   {
     name: "מופון ישראל",
     type: "בניית אתרים",
     tag: "שירותים",
     url: "https://mufonisrael.com",
-    image: thumb("https://mufonisrael.com"),
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/6fef46525_Screenshot2026-06-15at125537.png",
   },
   {
-    name: "ד״ר גילה רוזן | תזונת תינוקות",
+    name: "האקדמיה לתזונת תינוקות | ד״ר גילה רוזן",
     type: "בניית אתרים",
     tag: "בריאות",
     url: null,
-    image: null,
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/83c569b75_Screenshot2026-06-15at125543.png",
   },
   {
     name: "Group Miller",
     type: "בניית אתרים",
     tag: "נדל״ן",
     url: "https://g-miller.net",
-    image: thumb("https://g-miller.net"),
+    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/52d7e79db_Screenshot2026-06-15at125548.png",
   },
 ];
 
