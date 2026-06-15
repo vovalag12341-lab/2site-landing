@@ -1,4 +1,4 @@
-import { ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle, Star, TrendingUp, Users, Zap } from "lucide-react";
 
 const trustTags = [
   "194+ פרויקטים",
@@ -8,78 +8,148 @@ const trustTags = [
   "מוכן לקמפיינים ולידים",
 ];
 
-// Mock browser/site mockup as JSX
 function SiteMockup() {
   return (
-    <div className="relative w-full max-w-sm mx-auto">
-      {/* Glow behind */}
-      <div className="absolute inset-0 blur-3xl opacity-30 pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.6) 0%, rgba(236,72,153,0.3) 100%)" }} />
+    <div className="relative w-full max-w-sm mx-auto" style={{ direction: "ltr" }}>
+      {/* Ambient glow layers */}
+      <div className="absolute -inset-6 blur-3xl opacity-25 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.7) 0%, rgba(236,72,153,0.4) 50%, transparent 75%)" }} />
+      <div className="absolute -inset-2 blur-xl opacity-20 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 30% 70%, rgba(99,102,241,0.5) 0%, transparent 60%)" }} />
 
-      {/* Browser chrome */}
-      <div className="relative rounded-2xl overflow-hidden border"
-        style={{ background: "#12111a", borderColor: "rgba(124,58,237,0.3)", boxShadow: "0 32px 80px rgba(0,0,0,0.6)" }}>
+      {/* Floating analytics card — top left */}
+      <div className="absolute -top-4 -left-6 z-20 px-3 py-2.5 rounded-xl text-white"
+        style={{ background: "rgba(13,12,23,0.92)", backdropFilter: "blur(14px)", border: "1px solid rgba(124,58,237,0.35)", boxShadow: "0 8px 32px rgba(124,58,237,0.2)", animation: "float1 4s ease-in-out infinite" }}>
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }}>
+            <TrendingUp size={11} className="text-white" />
+          </div>
+          <div>
+            <div className="text-xs font-bold text-white">+47% לידים</div>
+            <div className="text-gray-500" style={{ fontSize: "9px" }}>החודש האחרון</div>
+          </div>
+        </div>
+      </div>
 
-        {/* Top bar */}
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ background: "#0d0c17", borderColor: "rgba(255,255,255,0.06)" }}>
+      {/* Floating reviews badge — bottom right */}
+      <div className="absolute -bottom-4 -right-5 z-20 px-3 py-2.5 rounded-xl"
+        style={{ background: "rgba(13,12,23,0.92)", backdropFilter: "blur(14px)", border: "1px solid rgba(236,72,153,0.3)", boxShadow: "0 8px 32px rgba(236,72,153,0.15)", animation: "float2 5s ease-in-out infinite" }}>
+        <div className="flex items-center gap-2">
+          <div className="flex gap-0.5">
+            {[0,1,2,3,4].map(i => <Star key={i} size={9} className="fill-yellow-400 text-yellow-400" />)}
+          </div>
+          <div className="text-white font-bold" style={{ fontSize: "11px" }}>5.0 Google</div>
+        </div>
+        <div className="text-gray-500 mt-0.5 text-right" style={{ fontSize: "9px" }}>50+ ביקורות מאומתות</div>
+      </div>
+
+      {/* Floating mobile-ready badge — right */}
+      <div className="absolute top-1/2 -right-5 z-20 px-2.5 py-2 rounded-xl"
+        style={{ background: "rgba(13,12,23,0.92)", backdropFilter: "blur(14px)", border: "1px solid rgba(99,102,241,0.3)", boxShadow: "0 8px 24px rgba(99,102,241,0.15)", animation: "float3 6s ease-in-out infinite", transform: "translateY(-50%)" }}>
+        <div className="text-center">
+          <div className="text-base mb-0.5">📱</div>
+          <div className="text-white font-bold" style={{ fontSize: "9px" }}>Mobile</div>
+          <div className="text-green-400 font-bold" style={{ fontSize: "9px" }}>Ready</div>
+        </div>
+      </div>
+
+      {/* Browser frame */}
+      <div className="relative rounded-2xl overflow-hidden"
+        style={{ background: "#0d0c17", border: "1px solid rgba(124,58,237,0.35)", boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
+
+        {/* Browser top bar */}
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b"
+          style={{ background: "#09090f", borderColor: "rgba(255,255,255,0.05)" }}>
           <div className="flex gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f56" }} />
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#ffbd2e" }} />
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#27c93f" }} />
           </div>
-          <div className="flex-1 mx-3 px-3 py-1 rounded text-xs text-gray-600"
-            style={{ background: "rgba(255,255,255,0.04)" }}>
-            www.my-business.co.il
+          <div className="flex-1 flex items-center gap-1.5 mx-3 px-3 py-1 rounded-md"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "rgba(39,201,63,0.6)" }} />
+            <span className="text-gray-600" style={{ fontSize: "10px" }}>your-business.co.il</span>
           </div>
         </div>
 
-        {/* Page hero mock */}
-        <div className="p-5">
-          <div className="rounded-xl p-5 mb-3"
-            style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(236,72,153,0.08) 100%)", border: "1px solid rgba(124,58,237,0.15)" }}>
-            <div className="h-2.5 w-32 rounded mb-2" style={{ background: "rgba(167,139,250,0.5)" }} />
-            <div className="h-4 w-48 rounded mb-1.5" style={{ background: "rgba(255,255,255,0.15)" }} />
-            <div className="h-4 w-40 rounded mb-4" style={{ background: "rgba(255,255,255,0.1)" }} />
-            <div className="h-2 w-36 rounded mb-1" style={{ background: "rgba(255,255,255,0.07)" }} />
-            <div className="h-2 w-28 rounded mb-5" style={{ background: "rgba(255,255,255,0.05)" }} />
-            <div className="inline-block px-4 py-2 rounded-full text-xs font-bold text-white"
-              style={{ background: "linear-gradient(135deg,#7c3aed,#ec4899)" }}>
-              צרו קשר עכשיו
+        {/* Site content */}
+        <div className="p-4" dir="rtl">
+
+          {/* Hero section */}
+          <div className="rounded-xl p-4 mb-3 relative overflow-hidden"
+            style={{ background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(168,85,247,0.1) 50%, rgba(236,72,153,0.1) 100%)", border: "1px solid rgba(124,58,237,0.2)" }}>
+            {/* dot decorations */}
+            <div className="absolute top-2 left-2 w-12 h-12 rounded-full opacity-20 blur-lg"
+              style={{ background: "radial-gradient(circle, #a855f7, transparent)" }} />
+            <div className="mb-2 flex items-center gap-1.5">
+              <div className="w-1 h-1 rounded-full" style={{ background: "#a78bfa" }} />
+              <div className="h-1.5 w-16 rounded" style={{ background: "rgba(167,139,250,0.5)" }} />
             </div>
+            <div className="text-white font-black text-sm mb-0.5 leading-tight">האתר החדש שלך</div>
+            <div className="text-purple-300 font-semibold mb-2" style={{ fontSize: "10px" }}>מוכן לקמפיינים · לידים מהיום הראשון</div>
+            <div className="h-1.5 w-full rounded mb-1" style={{ background: "rgba(255,255,255,0.08)" }} />
+            <div className="h-1.5 w-3/4 rounded mb-4" style={{ background: "rgba(255,255,255,0.05)" }} />
+            <button className="px-4 py-1.5 rounded-full text-white font-bold"
+              style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7,#ec4899)", fontSize: "10px", boxShadow: "0 4px 14px rgba(124,58,237,0.4)" }}>
+              צרו קשר עכשיו ←
+            </button>
           </div>
 
-          {/* Cards row */}
+          {/* Services row */}
           <div className="grid grid-cols-3 gap-2 mb-3">
-            {["שירות A", "שירות B", "שירות C"].map((s) => (
-              <div key={s} className="rounded-lg p-2.5 text-center"
-                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div className="w-4 h-4 rounded-full mx-auto mb-1.5"
-                  style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }} />
-                <div className="h-1.5 w-full rounded" style={{ background: "rgba(255,255,255,0.1)" }} />
+            {[
+              { icon: "🎨", label: "עיצוב" },
+              { icon: "⚡", label: "מהירות" },
+              { icon: "📈", label: "SEO" },
+            ].map((s) => (
+              <div key={s.label} className="rounded-lg p-2 text-center"
+                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
+                <div className="text-sm mb-1">{s.icon}</div>
+                <div className="text-gray-400 font-medium" style={{ fontSize: "9px" }}>{s.label}</div>
               </div>
             ))}
           </div>
 
-          {/* Testimonial mock */}
-          <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-            <div className="flex gap-0.5 mb-2">
-              {[0,1,2,3,4].map(i => <div key={i} className="w-2.5 h-2.5 rounded-sm" style={{ background: "#f59e0b" }} />)}
+          {/* Reviews + mini analytics row */}
+          <div className="grid grid-cols-2 gap-2">
+            {/* Reviews */}
+            <div className="rounded-lg p-2.5"
+              style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex gap-0.5 mb-1.5">
+                {[0,1,2,3,4].map(i => <Star key={i} size={8} className="fill-yellow-400 text-yellow-400" />)}
+              </div>
+              <div className="text-white font-bold" style={{ fontSize: "11px" }}>5.0</div>
+              <div className="text-gray-600" style={{ fontSize: "8px" }}>Google Reviews</div>
             </div>
-            <div className="h-1.5 w-full rounded mb-1" style={{ background: "rgba(255,255,255,0.07)" }} />
-            <div className="h-1.5 w-4/5 rounded" style={{ background: "rgba(255,255,255,0.05)" }} />
+            {/* Analytics */}
+            <div className="rounded-lg p-2.5"
+              style={{ background: "rgba(124,58,237,0.06)", border: "1px solid rgba(124,58,237,0.15)" }}>
+              <div className="flex items-center gap-1 mb-1">
+                <Users size={9} style={{ color: "#a78bfa" }} />
+                <div className="text-gray-400" style={{ fontSize: "8px" }}>מבקרים החודש</div>
+              </div>
+              <div className="text-white font-black" style={{ fontSize: "13px" }}>1,240</div>
+              <div className="text-green-400 font-semibold" style={{ fontSize: "8px" }}>↑ 23% מחודש שעבר</div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Floating badges */}
-      <div className="absolute -top-3 -left-4 px-3 py-1.5 rounded-full text-xs font-semibold text-white"
-        style={{ background: "rgba(124,58,237,0.85)", backdropFilter: "blur(10px)", border: "1px solid rgba(167,139,250,0.3)" }}>
-        ✓ SEO מוכן
-      </div>
-      <div className="absolute -bottom-3 -right-4 px-3 py-1.5 rounded-full text-xs font-semibold text-white"
-        style={{ background: "rgba(236,72,153,0.75)", backdropFilter: "blur(10px)", border: "1px solid rgba(244,114,182,0.3)" }}>
-        📱 מותאם מובייל
-      </div>
+      <style>{`
+        @keyframes float1 {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+        @keyframes float2 {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(5px); }
+        }
+        @keyframes float3 {
+          0%, 100% { transform: translateY(-50%) translateX(0px); }
+          50% { transform: translateY(-50%) translateX(4px); }
+        }
+      `}</style>
     </div>
   );
 }
