@@ -25,21 +25,21 @@ function LogoItem({ logo }) {
     return (
       <div
         className="flex-shrink-0 flex items-center justify-center logo-item-img"
-        style={{ width: "130px", height: "64px" }}
+        style={{ width: "200px", height: "100px" }}
       >
         <img
           src={logo.img}
           alt={logo.name}
           draggable={false}
           style={{
-            maxHeight: "52px",
-            maxWidth: "120px",
+            maxHeight: "90px",
+            maxWidth: "190px",
             width: "auto",
             height: "auto",
             objectFit: "contain",
-            opacity: 0.55,
-            filter: "grayscale(100%) brightness(1.4)",
-            transition: "opacity 0.3s ease, filter 0.3s ease",
+            opacity: 0.9,
+            filter: "none",
+            transition: "opacity 0.3s ease",
             userSelect: "none",
           }}
         />
@@ -50,7 +50,7 @@ function LogoItem({ logo }) {
   return (
     <div
       className="flex-shrink-0 flex flex-col items-center justify-center logo-item-text"
-      style={{ width: "130px", height: "64px", cursor: "default" }}
+      style={{ width: "200px", height: "100px", cursor: "default" }}
     >
       <div
         className="px-4 py-2 rounded-xl text-center transition-all duration-300"
@@ -69,8 +69,8 @@ function LogoItem({ logo }) {
   );
 }
 
-const GAP = 24;
-const ITEM_W = 130 + GAP;
+const GAP = 32;
+const ITEM_W = 200 + GAP;
 const SET_WIDTH = logos.length * ITEM_W;
 
 export default function ClientLogos() {
@@ -120,8 +120,7 @@ export default function ClientLogos() {
           100% { transform: translateX(-${SET_WIDTH}px); }
         }
         .logo-item-img:hover img {
-          opacity: 0.9 !important;
-          filter: grayscale(0%) brightness(1) !important;
+          opacity: 1 !important;
         }
         .logo-item-text > div:hover {
           border-color: rgba(124,58,237,0.3) !important;
