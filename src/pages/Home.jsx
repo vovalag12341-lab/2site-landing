@@ -23,16 +23,41 @@ export default function Home() {
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
       <div style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
         {/* Video header - mobile only (Shorts) */}
-        <div className="block md:hidden w-full" style={{ background: "#000", lineHeight: 0 }}>
+        <div className="block md:hidden w-full relative" style={{ background: "#000", lineHeight: 0 }}>
           <div style={{ position: "relative", paddingBottom: "177.78%", height: 0, overflow: "hidden" }}>
             <iframe
-              src="https://www.youtube.com/embed/Yb1z4YMmi64?autoplay=1&mute=1&loop=1&playlist=Yb1z4YMmi64&controls=0&showinfo=0&rel=0&modestbranding=1"
+              src={`https://www.youtube.com/embed/Yb1z4YMmi64?autoplay=1&mute=${muted ? 1 : 0}&loop=1&playlist=Yb1z4YMmi64&controls=0&showinfo=0&rel=0&modestbranding=1`}
               title="2site mobile video"
               allow="autoplay; encrypted-media"
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
           </div>
+          <button
+            onClick={() => setMuted(!muted)}
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              background: muted ? "rgba(124,58,237,0.85)" : "rgba(0,0,0,0.7)",
+              border: "2px solid rgba(255,255,255,0.4)",
+              borderRadius: "50px",
+              padding: "12px 28px",
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: "700",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              backdropFilter: "blur(10px)",
+              zIndex: 10,
+              boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+            }}
+          >
+            {muted ? "🔇 הסר השתקה" : "🔊 השתק"}
+          </button>
         </div>
 
         {/* Video header - desktop only */}
@@ -52,21 +77,22 @@ export default function Home() {
             onClick={() => setMuted(!muted)}
             style={{
               position: "absolute",
-              bottom: "20px",
-              left: "20px",
-              background: "rgba(0,0,0,0.6)",
-              border: "1px solid rgba(255,255,255,0.3)",
+              bottom: "28px",
+              left: "28px",
+              background: muted ? "rgba(124,58,237,0.85)" : "rgba(0,0,0,0.7)",
+              border: "2px solid rgba(255,255,255,0.4)",
               borderRadius: "50px",
-              padding: "10px 20px",
+              padding: "14px 32px",
               color: "#fff",
-              fontSize: "14px",
-              fontWeight: "600",
+              fontSize: "16px",
+              fontWeight: "700",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
-              gap: "8px",
-              backdropFilter: "blur(8px)",
+              gap: "10px",
+              backdropFilter: "blur(10px)",
               zIndex: 10,
+              boxShadow: "0 4px 24px rgba(124,58,237,0.4)",
               transition: "all 0.2s ease",
             }}
           >
