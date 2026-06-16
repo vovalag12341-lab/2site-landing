@@ -1,4 +1,4 @@
-import { ArrowLeft, CheckCircle, Star, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle, Star, TrendingUp, Users, Zap, CalendarCheck } from "lucide-react";
 
 const trustTags = [
   "194+ פרויקטים",
@@ -210,6 +210,16 @@ export default function Hero() {
                 className="text-gray-300 hover:text-white font-semibold px-7 py-4 rounded-full text-base transition-all flex items-center justify-center"
                 style={{ border: "1px solid rgba(124,58,237,0.3)" }}>
                 צפייה בחבילות
+              </a>
+              <a
+                href="https://calendar.app.google/f2BwwapQtskgvj4r9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 font-bold px-7 py-4 rounded-full text-base transition-all hover:scale-105"
+                style={{ background: "linear-gradient(135deg,#059669,#10b981)", boxShadow: "0 6px 24px rgba(16,185,129,0.35)", color: "#fff" }}
+              >
+                <CalendarCheck size={16} />
+                לקביעת פגישת איפיון עם מנכ״ל החברה
               </a>
             </div>
           </div>
