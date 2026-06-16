@@ -8,6 +8,8 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 // Add page imports here
 import Home from './pages/Home.jsx';
+import Accessibility from './pages/Accessibility.jsx';
+import Privacy from './pages/Privacy.jsx';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -37,6 +39,8 @@ const AuthenticatedApp = () => {
     <Routes>
       {/* Add your page Route elements here */}
       <Route path="/" element={<Home />} />
+      <Route path="/accessibility" element={<Accessibility />} />
+      <Route path="/privacy" element={<Privacy />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

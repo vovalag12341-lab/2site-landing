@@ -11,8 +11,14 @@ export default function Footer() {
           <a href="#projects" className="hover:text-gray-300 transition-colors">פרויקטים</a>
           <a href="#contact" className="hover:text-gray-300 transition-colors">צור קשר</a>
         </div>
-        <div className="text-gray-700 text-xs">
-          © {new Date().getFullYear()} 2site. כל הזכויות שמורות.
+        <div className="flex flex-col items-center md:items-end gap-2">
+          <div className="flex gap-4 text-xs text-gray-600">
+            <a href="/accessibility" className="hover:text-gray-300 transition-colors">הצהרת נגישות</a>
+            <a href="/privacy" className="hover:text-gray-300 transition-colors">מדיניות פרטיות</a>
+          </div>
+          <div className="text-gray-700 text-xs">
+            © {new Date().getFullYear()} 2site. כל הזכויות שמורות.
+          </div>
         </div>
       </div>
     </footer>
