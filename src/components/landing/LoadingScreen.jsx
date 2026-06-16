@@ -1,177 +1,179 @@
 import { useEffect, useState } from "react";
 
 export default function LoadingScreen({ onDone }) {
-  const [animationPhase, setAnimationPhase] = useState("drawing"); // drawing | sparkle | fadeout
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // Drawing animation: 1.5s
-    const drawTimer = setTimeout(() => setAnimationPhase("sparkle"), 1500);
-    // Sparkle + glow: 0.3s
-    const sparkleTimer = setTimeout(() => setAnimationPhase("fadeout"), 1800);
-    // Fade out: 0.7s, then done
-    const doneTimer = setTimeout(onDone, 2500);
+    // Drawing: 1.4s, sparkle: 0.3s, fade: 0.45s = total ~2.15s
+    const doneTimer = setTimeout(() => {
+      setDone(true);
+      setTimeout(onDone, 450); // Let fade out complete
+    }, 1700);
 
-    return () => {
-      clearTimeout(drawTimer);
-      clearTimeout(sparkleTimer);
-      clearTimeout(doneTimer);
-    };
+    return () => clearTimeout(doneTimer);
   }, [onDone]);
-
-  const opacity = animationPhase === "fadeout" ? 0 : 1;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      className={`fixed inset-0 z-[99999] flex items-center justify-center transition-all duration-[450ms] ease-out ${
+        done ? "opacity-0 invisible pointer-events-none" : "opacity-100 visible"
+      }`}
       style={{
-        background: "linear-gradient(135deg, #faf9ff 0%, #f3f0ff 50%, #f8f5ff 100%)",
-        opacity,
-        transition: animationPhase === "fadeout" ? "opacity 0.7s ease" : "none",
-        pointerEvents: animationPhase === "fadeout" ? "none" : "all",
+        background: `
+          radial-gradient(circle at 30% 20%, rgba(109, 53, 255, 0.14), transparent 35%),
+          radial-gradient(circle at 70% 60%, rgba(255, 79, 195, 0.12), transparent 35%),
+          #fbfaff
+        `,
       }}
     >
-      {/* Radial glow overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 70% at 50% 45%, rgba(124,58,237,0.1) 0%, rgba(168,85,247,0.05) 40%, transparent 80%)",
-        }}
-      />
-
-      {/* SVG with brush-stroke animation */}
       <svg
-        width="380"
-        height="180"
-        viewBox="0 0 380 180"
+        width="320"
+        height="140"
+        viewBox="0 0 320 140"
         className="relative z-10"
         style={{ maxWidth: "80vw", height: "auto" }}
+        preserveAspectRatio="xMidYMid meet"
       >
         <defs>
           {/* Gradient for "2" */}
-          <linearGradient id="gradientTwo" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="gradTwo" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#7c3aed" />
-            <stop offset="60%" stopColor="#a855f7" />
+            <stop offset="50%" stopColor="#a855f7" />
             <stop offset="100%" stopColor="#ec4899" />
           </linearGradient>
 
-          {/* Brush/marker for drawing animation */}
-          <circle id="brushMarker" cx="0" cy="0" r="8" fill="url(#gradientTwo)" opacity="0.8" />
-
-          {/* Glow filter for sparkle */}
-          <filter id="sparkleGlow">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+          {/* Glow filter */}
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
 
-        {/* Background sparkle particles (hidden by default, shown in sparkle phase) */}
-        {animationPhase === "sparkle" &&
-          Array.from({ length: 8 }).map((_, i) => (
-            <circle
-              key={i}
-              cx={80 + Math.random() * 240}
-              cy={60 + Math.random() * 60}
-              r={Math.random() * 2 + 1}
-              fill={["#7c3aed", "#a855f7", "#ec4899", "#6366f1"][i % 4]}
-              opacity={0.6}
-              filter="url(#sparkleGlow)"
-              style={{
-                animation: `sparkleOut 0.4s ease-out forwards`,
-              }}
-            />
-          ))}
-
-        {/* "2" text — drawn with stroke animation */}
+        {/* Text "2" - drawn with stroke */}
         <text
-          x="60"
-          y="110"
-          fontSize="120"
+          x="50"
+          y="100"
+          fontSize="88"
           fontWeight="900"
           fontFamily="'Heebo', sans-serif"
-          fill="url(#gradientTwo)"
+          textAnchor="middle"
+          fill="none"
+          stroke="url(#gradTwo)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray="300"
+          strokeDashoffset="300"
           style={{
-            opacity: animationPhase === "drawing" ? 1 : 0.9,
-            transition: "opacity 0.3s ease",
-            paintOrder: "stroke",
-            stroke: "url(#gradientTwo)",
-            strokeWidth: "2",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            filter: "drop-shadow(0 4px 12px rgba(124,58,237,0.25))",
+            animation: "drawLogo 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+            filter: "drop-shadow(0 2px 8px rgba(124, 58, 237, 0.25))",
           }}
         >
           2
         </text>
 
-        {/* "site" text — drawn with stroke animation */}
+        {/* Text "site" - drawn with stroke */}
         <text
           x="180"
-          y="110"
-          fontSize="120"
+          y="100"
+          fontSize="88"
           fontWeight="900"
           fontFamily="'Heebo', sans-serif"
-          fill="#1f2937"
+          textAnchor="middle"
+          fill="none"
+          stroke="#1f2937"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray="500"
+          strokeDashoffset="500"
           style={{
-            opacity: animationPhase === "drawing" ? 1 : 0.9,
-            transition: "opacity 0.3s ease",
-            paintOrder: "stroke",
-            stroke: "rgba(31,41,55,0.3)",
-            strokeWidth: "1.5",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.12))",
+            animation: "drawLogo 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.1s",
+            filter: "drop-shadow(0 1px 4px rgba(0, 0, 0, 0.15))",
           }}
         >
           site
         </text>
 
-        {/* Animated drawing underline */}
-        <line
-          x1="45"
-          y1="125"
-          x2="315"
-          y2="125"
-          strokeWidth="4"
-          stroke="url(#gradientTwo)"
-          strokeLinecap="round"
+        {/* Brush cursor - small circle that moves along */}
+        <circle
+          cx="10"
+          cy="100"
+          r="6"
+          fill="url(#gradTwo)"
+          opacity="0.7"
+          filter="url(#glow)"
           style={{
-            opacity: animationPhase === "drawing" ? 1 : 0,
-            transition: animationPhase === "sparkle" ? "opacity 0.3s ease" : "none",
-            animation:
-              animationPhase === "drawing"
-                ? "underlineReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards"
-                : "none",
-            filter: "drop-shadow(0 2px 6px rgba(124,58,237,0.2))",
+            animation: "brushCursor 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.05s",
           }}
         />
       </svg>
 
-      {/* Glow aura behind text */}
-      <div
-        className="absolute pointer-events-none"
+      {/* Sparkle particles - appear after drawing */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
-          width: "320px",
-          height: "160px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(236,72,153,0.15) 50%, transparent 100%)",
-          filter: "blur(40px)",
-          opacity: animationPhase === "drawing" ? 1 : animationPhase === "sparkle" ? 1.2 : 0,
-          transition: "opacity 0.4s ease",
-          zIndex: 5,
+          opacity: done ? 0 : 1,
+          animation: "sparkleGlow 0.3s ease-out 1.4s forwards",
         }}
-      />
+      >
+        {Array.from({ length: 6 }).map((_, i) => (
+          <circle
+            key={i}
+            cx={160 + (Math.random() - 0.5) * 200}
+            cy={70 + (Math.random() - 0.5) * 100}
+            r={Math.random() * 2 + 1}
+            fill={["#7c3aed", "#a855f7", "#ec4899", "#6366f1"][i % 4]}
+            style={{
+              animation: `sparkleOut 0.5s ease-out 1.4s forwards`,
+            }}
+          />
+        ))}
+      </svg>
 
-      {/* CSS animations */}
       <style>{`
-        @keyframes underlineReveal {
+        @keyframes drawLogo {
           from {
-            stroke-dasharray: 270;
-            stroke-dashoffset: 270;
+            stroke-dashoffset: var(--offset);
+            opacity: 1;
           }
           to {
-            stroke-dasharray: 270;
             stroke-dashoffset: 0;
+            opacity: 1;
+          }
+        }
+
+        text[style*="drawLogo"] {
+          --offset: 500;
+        }
+
+        text:nth-of-type(1)[style*="drawLogo"] {
+          --offset: 300;
+        }
+
+        @keyframes brushCursor {
+          0% {
+            transform: translateX(-100px) translateY(0) rotate(-15deg);
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateX(200px) translateY(-20px) rotate(15deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes sparkleGlow {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
           }
         }
 
@@ -182,7 +184,11 @@ export default function LoadingScreen({ onDone }) {
           }
           100% {
             opacity: 0;
-            transform: translate(var(--tx), var(--ty)) scale(0.3);
+            transform: translate(
+              calc((var(--i, 0) - 3) * 40px),
+              calc((var(--i, 0) % 2 - 0.5) * 60px)
+            )
+            scale(0.2);
           }
         }
 
