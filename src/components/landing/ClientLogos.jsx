@@ -70,11 +70,9 @@ function LogoItem({ logo }) {
 }
 
 const GAP = 32;
-const ITEM_W = 400 + GAP;
-const SET_WIDTH = logos.length * ITEM_W;
 
 export default function ClientLogos() {
-  const tripled = [...logos, ...logos, ...logos];
+  const quadrupled = [...logos, ...logos, ...logos, ...logos];
 
   return (
     <section className="py-14" style={{ background: "#07070f", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)", overflow: "hidden" }}>
@@ -102,7 +100,7 @@ export default function ClientLogos() {
             userSelect: "none",
           }}
         >
-          {tripled.map((logo, i) => (
+          {quadrupled.map((logo, i) => (
             <LogoItem key={i} logo={logo} />
           ))}
         </div>
@@ -110,8 +108,8 @@ export default function ClientLogos() {
 
       <style>{`
         @keyframes clientLogosScroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-${SET_WIDTH}px); }
+          from { transform: translateX(0); }
+          to   { transform: translateX(-25%); }
         }
         .client-logos-track {
           animation: clientLogosScroll 350ms linear infinite;

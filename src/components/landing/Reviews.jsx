@@ -102,12 +102,9 @@ function ReviewCard({ review }) {
   );
 }
 
-const REVIEW_W = 288 + 20; // w-72 = 288px + gap 20px
-const REVIEWS_SET_W = reviews.length * REVIEW_W;
-
 export default function Reviews() {
   const [paused, setPaused] = useState(false);
-  const doubled = [...reviews, ...reviews];
+  const quadrupled = [...reviews, ...reviews, ...reviews, ...reviews];
 
   return (
     <section id="reviews" className="py-24 overflow-hidden" style={{ background: "#07070f" }}>
@@ -147,14 +144,14 @@ export default function Reviews() {
             animation: "reviewsMarquee 350ms linear infinite",
           }}
         >
-          {doubled.map((r, i) => <ReviewCard key={i} review={r} />)}
+          {quadrupled.map((r, i) => <ReviewCard key={i} review={r} />)}
         </div>
       </div>
 
       <style>{`
         @keyframes reviewsMarquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-${REVIEWS_SET_W}px); }
+          from { transform: translateX(0); }
+          to   { transform: translateX(-25%); }
         }
       `}</style>
     </section>

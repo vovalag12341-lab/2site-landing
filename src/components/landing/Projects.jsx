@@ -142,13 +142,11 @@ function ProjectCard({ project }) {
   return <div className="flex-shrink-0">{cardContent}</div>;
 }
 
-const CARD_W = 300;
 const GAP = 20;
-const SET_W = projects.length * (CARD_W + GAP);
 
 export default function Projects() {
   const [paused, setPaused] = useState(false);
-  const doubled = [...projects, ...projects];
+  const quadrupled = [...projects, ...projects, ...projects, ...projects];
 
   return (
     <section id="projects" className="py-24 overflow-hidden" style={{ background: "#05050d" }}>
@@ -184,10 +182,10 @@ export default function Projects() {
             willChange: "transform",
             userSelect: "none",
             animationPlayState: paused ? "paused" : "running",
-            animation: `marqueeProjects 350ms linear infinite`,
+            animation: "marqueeProjects 350ms linear infinite",
           }}
         >
-          {doubled.map((p, i) => (
+          {quadrupled.map((p, i) => (
             <ProjectCard key={i} project={p} />
           ))}
         </div>
@@ -195,8 +193,8 @@ export default function Projects() {
 
       <style>{`
         @keyframes marqueeProjects {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-${SET_W}px); }
+          from { transform: translateX(0); }
+          to   { transform: translateX(-25%); }
         }
       `}</style>
     </section>
