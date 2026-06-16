@@ -177,7 +177,7 @@ export default function Hero() {
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-gray-900 leading-tight mb-6"
               style={{ lineHeight: 1.18 }}>
-              אתר מקצועי לעסק שלך{" "}
+              אתר בסטנדרט 2site לעסק שלך{" "}
               <span className="brand-gradient-text">
                 כולל ליווי מלא ותחזוקה ללא הגבלה לאחר ההקמה!
               </span>
