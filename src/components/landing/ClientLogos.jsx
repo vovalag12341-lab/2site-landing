@@ -109,15 +109,15 @@ export default function ClientLogos() {
       </div>
 
       <style>{`
-        .client-logos-track {
-          animation: clientLogosScroll 5s linear infinite;
-        }
-        .client-logos-track:hover {
-          animation-play-state: paused;
-        }
         @keyframes clientLogosScroll {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-${SET_WIDTH}px); }
+        }
+        .client-logos-track {
+          animation: clientLogosScroll 5000ms linear infinite;
+        }
+        .client-logos-track:hover {
+          animation-play-state: paused;
         }
         .logo-item-img:hover img {
           opacity: 1 !important;

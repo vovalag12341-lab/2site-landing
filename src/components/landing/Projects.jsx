@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ExternalLink, Clock } from "lucide-react";
 
 const projects = [
@@ -142,43 +142,13 @@ function ProjectCard({ project }) {
   return <div className="flex-shrink-0">{cardContent}</div>;
 }
 
+const CARD_W = 300;
+const GAP = 20;
+const SET_W = projects.length * (CARD_W + GAP);
+
 export default function Projects() {
-  const trackRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
   const [paused, setPaused] = useState(false);
-
-  const tripled = [...projects, ...projects, ...projects];
-
-  const onMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - trackRef.current.offsetLeft);
-    setScrollLeft(trackRef.current.scrollLeft);
-    setPaused(true);
-  };
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - trackRef.current.offsetLeft;
-    trackRef.current.scrollLeft = scrollLeft - (x - startX);
-  };
-  const onMouseUp = () => setIsDragging(false);
-
-  const onTouchStart = (e) => {
-    setStartX(e.touches[0].pageX);
-    setScrollLeft(trackRef.current.scrollLeft);
-    setPaused(true);
-  };
-  const onTouchMove = (e) => {
-    const x = e.touches[0].pageX;
-    trackRef.current.scrollLeft = scrollLeft - (x - startX);
-  };
-  const onTouchEnd = () => setPaused(false);
-
-  const cardW = 300;
-  const gap = 20;
-  const totalWidth = projects.length * (cardW + gap);
+  const doubled = [...projects, ...projects];
 
   return (
     <section id="projects" className="py-24 overflow-hidden" style={{ background: "#05050d" }}>
@@ -204,28 +174,20 @@ export default function Projects() {
           WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%)",
         }}
         onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => { if (!isDragging) setPaused(false); }}
+        onMouseLeave={() => setPaused(false)}
       >
         <div
-          ref={trackRef}
           className="flex py-4"
           style={{
-            gap: `${gap}px`,
+            gap: `${GAP}px`,
             width: "max-content",
-            animation: paused ? "none" : `marqueeProjects ${projects.length * 5}s linear infinite`,
-            cursor: isDragging ? "grabbing" : "grab",
-            overflowX: "hidden",
+            willChange: "transform",
             userSelect: "none",
+            animationPlayState: paused ? "paused" : "running",
+            animation: `marqueeProjects 5000ms linear infinite`,
           }}
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
         >
-          {tripled.map((p, i) => (
+          {doubled.map((p, i) => (
             <ProjectCard key={i} project={p} />
           ))}
         </div>
@@ -233,8 +195,8 @@ export default function Projects() {
 
       <style>{`
         @keyframes marqueeProjects {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${totalWidth}px); }
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-${SET_W}px); }
         }
       `}</style>
     </section>

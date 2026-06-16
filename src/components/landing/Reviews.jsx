@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Star } from "lucide-react";
 
 const reviews = [
@@ -101,7 +102,11 @@ function ReviewCard({ review }) {
   );
 }
 
+const REVIEW_W = 288 + 20; // w-72 = 288px + gap 20px
+const REVIEWS_SET_W = reviews.length * REVIEW_W;
+
 export default function Reviews() {
+  const [paused, setPaused] = useState(false);
   const doubled = [...reviews, ...reviews];
 
   return (
@@ -123,11 +128,35 @@ export default function Reviews() {
         </div>
       </div>
 
-      <div className="relative overflow-hidden" style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)" }}>
-        <div className="reviews-track">
+      <div
+        className="relative overflow-hidden"
+        style={{
+          maskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)",
+        }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            width: "max-content",
+            willChange: "transform",
+            animationPlayState: paused ? "paused" : "running",
+            animation: "reviewsMarquee 5000ms linear infinite",
+          }}
+        >
           {doubled.map((r, i) => <ReviewCard key={i} review={r} />)}
         </div>
       </div>
+
+      <style>{`
+        @keyframes reviewsMarquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-${REVIEWS_SET_W}px); }
+        }
+      `}</style>
     </section>
   );
 }
