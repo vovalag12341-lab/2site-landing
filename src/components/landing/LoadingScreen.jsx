@@ -54,13 +54,6 @@ export default function LoadingScreen({ onDone }) {
         />
       </div>
 
-      <p
-        className="text-gray-400 text-sm md:text-base mb-10 tracking-wide"
-        style={{ fontFamily: "'Heebo', sans-serif" }}
-      >
-        מכינים לך אתר שמוכר...
-      </p>
-
       {/* Progress bar */}
       <div className="w-48 h-[2px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
         <div
