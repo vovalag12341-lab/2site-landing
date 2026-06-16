@@ -15,13 +15,13 @@ export default function Clients() {
   const doubled = [...clients, ...clients];
   return (
     <section className="py-14 overflow-hidden relative" style={{
-      background: "linear-gradient(135deg, #fdf3f8 0%, #f8f0f8 50%, #fef5fb 100%)",
-      borderTop: "1px solid rgba(236,72,153,0.15)",
-      borderBottom: "1px solid rgba(236,72,153,0.15)",
-      boxShadow: "0 2px 24px rgba(236,72,153,0.08)",
+      background: "linear-gradient(135deg, #ffffff 0%, #fff5f8 50%, #fffbfc 100%)",
+      borderTop: "1px solid rgba(236,72,153,0.2)",
+      borderBottom: "1px solid rgba(236,72,153,0.2)",
+      boxShadow: "0 2px 24px rgba(236,72,153,0.1)",
     }}>
       {/* top gradient line */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f472b6 50%, #fda4c8 70%, transparent 100%)", opacity: 0.5 }} />
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.6 }} />
       <div className="max-w-6xl mx-auto px-5 mb-7 text-center">
         <p className="text-gray-500 text-xs tracking-[0.3em] uppercase font-semibold">
           מותגים ועסקים שבחרו ב־2site
@@ -45,7 +45,7 @@ export default function Clients() {
         </div>
       </div>
       {/* bottom gradient line */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f472b6 50%, #fda4c8 70%, transparent 100%)", opacity: 0.3 }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.4 }} />
     </section>
   );
 }
