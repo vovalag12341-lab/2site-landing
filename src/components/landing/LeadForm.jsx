@@ -18,7 +18,7 @@ function Field({ label, children }) {
 }
 
 export default function LeadForm() {
-  const [form, setForm] = useState({ name: "", phone: "", business: "", industry: "", pkg: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", business: "", industry: "", pkg: "", gift: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -86,6 +86,18 @@ export default function LeadForm() {
                     onFocus={focusStyle} onBlur={blurStyle} />
                 </Field>
               </div>
+
+              <Field label="בחירת מתנה">
+                <select value={form.gift} onChange={set("gift")}
+                  className={sharedInputClass + " appearance-none cursor-pointer"} style={inputStyle}
+                  onFocus={focusStyle} onBlur={blurStyle}>
+                  <option value="" style={{ background: "#0e0d1a" }}>בחר מתנה</option>
+                  <option value="landing" style={{ background: "#0e0d1a" }}>דף נחיתה לפרסום על בסיס האתר</option>
+                  <option value="ad" style={{ background: "#0e0d1a" }}>פרסומת מקצועית AI — 30 שניות</option>
+                  <option value="posts" style={{ background: "#0e0d1a" }}>סט 10 פוסטים לסושיאל</option>
+                  <option value="crm" style={{ background: "#0e0d1a" }}>התממשקות למועדוני לקוחות לאתרי מכירה</option>
+                </select>
+              </Field>
 
               <Field label="בחירת מסלול">
                 <select value={form.pkg} onChange={set("pkg")}
