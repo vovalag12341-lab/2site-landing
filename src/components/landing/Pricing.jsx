@@ -73,7 +73,7 @@ const packages = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 px-5" style={{ background: "#07070f" }}>
+    <section id="pricing" className="pt-24 pb-7 px-5" style={{ background: "#07070f" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
