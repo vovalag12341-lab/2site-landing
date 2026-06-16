@@ -212,7 +212,7 @@ export default function Projects() {
           style={{
             gap: `${gap}px`,
             width: "max-content",
-            animation: paused ? "none" : `marqueeProjects ${projects.length * 6}s linear infinite`,
+            animation: paused ? "none" : `marqueeProjects ${projects.length * 5}s linear infinite`,
             cursor: isDragging ? "grabbing" : "grab",
             overflowX: "hidden",
             userSelect: "none",

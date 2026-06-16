@@ -111,7 +111,7 @@ html { scroll-behavior: smooth; }
   100% { transform: translateX(50%); }
 }
 .marquee-track {
-  animation: marqueeRTL 28s linear infinite;
+  animation: marqueeRTL 50s linear infinite;
   display: flex;
   width: max-content;
 }
@@ -123,7 +123,7 @@ html { scroll-behavior: smooth; }
   100% { transform: translateX(-50%); }
 }
 .reviews-track {
-  animation: reviewsScroll 40s linear infinite;
+  animation: reviewsScroll 45s linear infinite;
   display: flex;
   gap: 20px;
   width: max-content;
