@@ -93,6 +93,7 @@ export default function LeadForm() {
                   onFocus={focusStyle} onBlur={blurStyle}>
                   <option value="" style={{ background: "#0e0d1a" }}>בחר מסלול</option>
                   <option value="starter" style={{ background: "#0e0d1a" }}>אתר תוכן / תדמית — ₪450/חודש</option>
+                  <option value="shop" style={{ background: "#0e0d1a" }}>אתר מכירות / קטלוג — ₪900/חודש</option>
                   <option value="pro" style={{ background: "#0e0d1a" }}>תוכן מורחב + SEO — ₪900/חודש</option>
                   <option value="extra" style={{ background: "#0e0d1a" }}>Extra SEO — ₪1,200/חודש</option>
                   <option value="unsure" style={{ background: "#0e0d1a" }}>לא בטוח, דברו איתי</option>
