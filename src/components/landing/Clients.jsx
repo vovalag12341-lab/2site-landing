@@ -1,36 +1,22 @@
 const logos = [
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/2f1c9ef40_image.png", name: "שלמה" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/dbb5f351b_image.png", name: "Dive Assure" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/fa3f62b92_image.png", name: "בית הפנקייק" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/b03fde9da_image.png", name: "אלבר" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/24ffd08b2_image.png", name: "Albar logo 2" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/8f781817c_image.png", name: "Logo 4" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/4f6b97708_image.png", name: "Logo 5" },
-  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/d9c281d62_image.png", name: "Logo 8" },
-  { name: "תלפיות" },
-  { name: "Cardcom" },
-  { name: "Homely" },
-  { name: "Elysian", sub: "Softech" },
-  { name: "מופון", sub: "ישראל" },
-  { name: "ד״ר גילה", sub: "רוזן" },
-  { name: "Top Safe" },
-  { name: "Living", sub: "Group" },
-  { name: "דרך", sub: "השף" },
-  { name: "Global Diving", sub: "Tours" },
+  "https://2site.co.il/wp-content/uploads/2025/03/shlomo.webp",
+  "https://2site.co.il/wp-content/uploads/2026/04/תלפיות.webp",
+  "https://2site.co.il/wp-content/uploads/2025/11/albar.webp",
+  "https://2site.co.il/wp-content/uploads/2026/04/בית-הפנקייק.webp",
+  "https://2site.co.il/wp-content/uploads/2025/03/cardcom.webp",
+  "https://2site.co.il/wp-content/uploads/2025/03/dive.webp",
+  "https://2site.co.il/wp-content/uploads/2026/04/homely.webp",
+  "https://2site.co.il/wp-content/uploads/2025/01/meta.webp",
+  "https://2site.co.il/wp-content/uploads/2025/01/google-1.webp",
+  "https://2site.co.il/wp-content/uploads/2025/01/wix.webp",
+  "https://2site.co.il/wp-content/uploads/2025/01/wordpresss.webp",
 ];
 
 export default function Clients() {
   const doubled = [...logos, ...logos];
   
   return (
-    <section className="py-14 overflow-hidden relative" style={{
-      background: "linear-gradient(135deg, #ffffff 0%, #fff5f8 50%, #fffbfc 100%)",
-      borderTop: "1px solid rgba(236,72,153,0.2)",
-      borderBottom: "1px solid rgba(236,72,153,0.2)",
-      boxShadow: "0 2px 24px rgba(236,72,153,0.1)",
-    }}>
-      {/* top gradient line */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.6 }} />
+    <section className="py-14 overflow-hidden relative" style={{ background: "#000" }}>
       <div className="max-w-6xl mx-auto px-5 mb-7 text-center">
         <p style={{ color: "#6b7280", fontSize: "12px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: "500" }}>
           לקוחות מובילים שבחרו ב־2site
@@ -38,22 +24,37 @@ export default function Clients() {
       </div>
       <div className="relative overflow-hidden" style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
         <div className="marquee-track gap-8 items-center py-2">
-          {doubled.map((logo, i) => (
-            <div key={i} className="flex-shrink-0" style={{ height: "60px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              {logo.img ? (
-                <img src={logo.img} alt={logo.name} loading="eager" draggable={false} style={{ maxHeight: "50px", maxWidth: "100px", width: "auto", height: "auto", objectFit: "contain", opacity: 0.85 }} />
-              ) : (
-                <div style={{ padding: "6px 10px", borderRadius: "8px", border: "1px solid rgba(124,58,237,0.15)", background: "rgba(124,58,237,0.03)", textAlign: "center", whiteSpace: "nowrap" }}>
-                  <div style={{ color: "#4b5563", fontWeight: "700", fontSize: "13px", lineHeight: 1.2 }}>{logo.name}</div>
-                  {logo.sub && <div style={{ color: "#6b7280", fontWeight: "500", fontSize: "10px", lineHeight: 1.2 }}>{logo.sub}</div>}
-                </div>
-              )}
+          {doubled.map((logoUrl, i) => (
+            <div key={i} className="flex-shrink-0" style={{ height: "60px", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.3s ease" }}>
+              <img 
+                src={logoUrl} 
+                alt="client logo"
+                loading="eager" 
+                draggable={false}
+                style={{ 
+                  maxHeight: "60px", 
+                  maxWidth: "140px", 
+                  width: "auto", 
+                  height: "auto", 
+                  objectFit: "contain", 
+                  filter: "grayscale(100%)",
+                  opacity: 0.7,
+                  cursor: "pointer",
+                  transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = "grayscale(0%)";
+                  e.currentTarget.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = "grayscale(100%)";
+                  e.currentTarget.style.opacity = "0.7";
+                }}
+              />
             </div>
           ))}
         </div>
       </div>
-      {/* bottom gradient line */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.4 }} />
     </section>
   );
 }

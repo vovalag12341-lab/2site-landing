@@ -1,146 +1,170 @@
 import { useState } from "react";
-import { ExternalLink, Clock } from "lucide-react";
-import StableCarousel from "./StableCarousel";
 
 const projects = [
   {
     name: "בית הפנקייק המקורי",
-    type: "בניית אתרים",
-    tag: "מסעדנות",
-    url: "https://pancake.co.il",
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/fcde9c6ea_Screenshot2026-06-15at125508.png",
-  },
-  {
-    name: "Elysian Softech",
-    type: "בניית אתרים",
-    tag: "טכנולוגיה",
-    url: "https://elysian-softech.com",
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/187f67026_Screenshot2026-06-15at125516.png",
+    category: "אתר הזמנות",
+    image: "https://2site.co.il/wp-content/uploads/2026/04/pancake.webp",
+    url: "https://2site.co.il/works/בית-הפנקייק-המקורי-אתר-הזמנות-חדש/"
   },
   {
     name: "הומלי",
-    type: "בניית אתרים",
-    tag: "נדל״ן",
-    url: "https://home-li.co.il",
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/a32d2444a_Screenshot2026-06-15at125522.png",
+    category: "בניית אתרים",
+    image: "https://2site.co.il/wp-content/uploads/2025/12/homely.webp",
+    url: "https://home-li.co.il"
+  },
+  {
+    name: "Nadlan FL",
+    category: "נדל\"ן",
+    image: "https://2site.co.il/wp-content/uploads/2026/02/flnadlan.webp",
+    url: "https://nadlan-fl.co.il"
+  },
+  {
+    name: "G-Miller",
+    category: "נדל\"ן",
+    image: "https://2site.co.il/wp-content/uploads/2025/02/new-millerz-1024x1013.avif",
+    url: "https://g-miller.net/"
   },
   {
     name: "מופון ישראל",
-    type: "בניית אתרים",
-    tag: "שירותים",
-    url: "https://mufonisrael.com",
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/6fef46525_Screenshot2026-06-15at125537.png",
+    category: "אתר תדמית",
+    image: "https://2site.co.il/wp-content/uploads/2026/04/Gemini_Generated_Image_9x50g99x50g99x50_800x800.jpg",
+    url: "https://2site.co.il/works/מופון-ישראל/"
   },
   {
-    name: "האקדמיה לתזונת תינוקות | ד״ר גילה רוזן",
-    type: "בניית אתרים",
-    tag: "בריאות",
-    url: null,
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/83c569b75_Screenshot2026-06-15at125543.png",
+    name: "עידית בן דב – עיצוב פנים",
+    category: "בניית אתרים",
+    image: "https://2site.co.il/wp-content/uploads/2025/11/idit-brn-dov.webp",
+    url: "http://iditbendov.co.il"
   },
   {
-    name: "Group Miller",
-    type: "בניית אתרים",
-    tag: "נדל״ן",
-    url: "https://g-miller.net",
-    image: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/52d7e79db_Screenshot2026-06-15at125548.png",
+    name: "Orocosmetics",
+    category: "חנות אונליין",
+    image: "https://2site.co.il/wp-content/uploads/2025/02/oriyan.webp",
+    url: "https://orocosmetics.co.il/"
   },
+  {
+    name: "Atheno Group",
+    category: "בניית אתרים",
+    image: "https://2site.co.il/wp-content/uploads/2025/11/atheno-group.webp",
+    url: "https://athenogroup.gr/"
+  }
 ];
 
 function ProjectCard({ project }) {
   const [hovered, setHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const card = (
-    <div
-      style={{
-        width: "100%",
-        height: "220px",
-        background: "#ffffff",
-        border: hovered ? "1px solid rgba(124,58,237,0.4)" : "1px solid rgba(124,58,237,0.12)",
-        boxShadow: hovered ? "0 8px 40px rgba(124,58,237,0.15)" : "0 2px 16px rgba(124,58,237,0.06)",
-        transform: hovered ? "translateY(-5px)" : "translateY(0)",
-        transition: "all 0.3s ease",
-        cursor: project.url ? "pointer" : "default",
-        borderRadius: "16px",
-        overflow: "hidden",
-        position: "relative",
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {project.image && !imgError ? (
-        <img
-          src={project.image}
-          alt={project.name}
-          loading="eager"
-          draggable={false}
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, rgba(124,58,237,0.18), rgba(236,72,153,0.08))" }}>
-          <div style={{ textAlign: "center", padding: "0 16px" }}>
-            <div style={{ fontSize: "32px", marginBottom: "8px" }}>🌐</div>
-            <div style={{ color: "#fff", fontWeight: "700", fontSize: "12px" }}>{project.name}</div>
-            <div style={{ color: "#a78bfa", fontSize: "12px", marginTop: "4px" }}>בניית אתרים</div>
-          </div>
+  return (
+    <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", textDecoration: "none" }}>
+      <div
+        style={{
+          width: "280px",
+          height: "360px",
+          background: "#111",
+          border: hovered ? "1px solid rgba(124,58,237,0.4)" : "1px solid rgba(124,58,237,0.12)",
+          borderRadius: "12px",
+          overflow: "hidden",
+          position: "relative",
+          transform: hovered ? "translateY(-8px)" : "translateY(0)",
+          transition: "all 0.3s ease",
+          flexShrink: 0,
+          cursor: "pointer",
+          boxShadow: hovered ? "0 12px 40px rgba(124,58,237,0.2)" : "0 2px 12px rgba(0,0,0,0.2)",
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Image section (top 60%) */}
+        <div style={{ width: "100%", height: "216px", overflow: "hidden", background: "#000" }}>
+          {project.image && !imgError ? (
+            <img
+              src={project.image}
+              alt={project.name}
+              loading="eager"
+              draggable={false}
+              style={{ 
+                width: "100%", 
+                height: "100%", 
+                objectFit: "cover",
+                objectPosition: "top",
+                display: "block",
+                transition: "transform 0.3s ease",
+                transform: hovered ? "scale(1.05)" : "scale(1)"
+              }}
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, rgba(124,58,237,0.18), rgba(236,72,153,0.08))" }}>
+              <div style={{ textAlign: "center", padding: "0 16px" }}>
+                <div style={{ fontSize: "40px", marginBottom: "8px" }}>🌐</div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(7,7,15,0.97) 0%, rgba(7,7,15,0.55) 40%, transparent 100%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "12px 16px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-        <div>
-          <div style={{ color: "#fff", fontWeight: "700", fontSize: "13px", lineHeight: 1.3, marginBottom: "2px" }}>{project.name}</div>
-          <div style={{ color: "#9ca3af", fontSize: "11px" }}>{project.type}</div>
-        </div>
-        {project.url ? (
-          <div style={{ color: hovered ? "#a78bfa" : "#6b7280", fontSize: "10px", display: "flex", alignItems: "center", gap: "4px", flexShrink: 0, marginRight: "8px" }}>
-            <span>צפייה באתר החי</span><ExternalLink size={10} />
-          </div>
-        ) : (
-          <div style={{ color: "#4b5563", fontSize: "10px", display: "flex", alignItems: "center", gap: "4px", flexShrink: 0, marginRight: "8px" }}>
-            <Clock size={10} /><span>קישור יתווסף בקרוב</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
 
-  if (project.url) {
-    return (
-      <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", textDecoration: "none" }}>
-        {card}
-      </a>
-    );
-  }
-  return card;
+        {/* Content section (bottom 40%) */}
+        <div style={{ width: "100%", height: "144px", padding: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div>
+            <div style={{ color: "#fff", fontWeight: "700", fontSize: "14px", lineHeight: 1.3, marginBottom: "6px" }}>
+              {project.name}
+            </div>
+            <div style={{ display: "inline-block", padding: "4px 10px", background: "rgba(124,58,237,0.15)", borderRadius: "6px", color: "#a78bfa", fontSize: "11px", fontWeight: "600" }}>
+              {project.category}
+            </div>
+          </div>
+          <div style={{ color: "#a78bfa", fontSize: "12px", fontWeight: "600", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span>לצפייה בפרוייקט ←</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
 }
 
 export default function Projects() {
+  const [autoplay, setAutoplay] = useState(true);
+  const doubled = [...projects, ...projects];
+
   return (
-    <section id="projects" className="pt-24 pb-2" style={{ background: "linear-gradient(180deg, #f3f0ff 0%, #f8f7ff 100%)" }}>
+    <section id="projects" className="pt-24 pb-12" style={{ background: "linear-gradient(180deg, #f3f0ff 0%, #f8f7ff 100%)" }}>
       <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
         <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
           style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
-          פרויקטים אחרונים
+          עבודות אחרונות שלנו
         </div>
         <h2 className="text-3xl md:text-5xl font-black text-gray-900">
-          פרויקטים אחרונים <span className="brand-gradient-text">שבנינו</span>
+          עבודות אחרונות <span className="brand-gradient-text">שלנו</span>
         </h2>
-        <p className="text-gray-400 text-sm mt-3">לחץ על כרטיס לצפייה באתר החי</p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-10">
-        <StableCarousel
-          items={projects}
-          renderItem={(project) => <ProjectCard project={project} />}
-          slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
-          gap={20}
-          autoplayDelay={3000}
-          showArrows={true}
-          showDots={true}
-        />
+      <div className="max-w-7xl mx-auto px-5 overflow-hidden">
+        <div 
+          style={{
+            display: "flex",
+            gap: "20px",
+            animation: autoplay ? "scrollProjects 40s linear infinite" : "none",
+            width: "fit-content",
+          }}
+          onMouseEnter={() => setAutoplay(false)}
+          onMouseLeave={() => setAutoplay(true)}
+        >
+          {doubled.map((project, i) => (
+            <ProjectCard key={i} project={project} />
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        @keyframes scrollProjects {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-280px * ${projects.length} - 20px * ${projects.length}));
+          }
+        }
+      `}</style>
     </section>
   );
 }
