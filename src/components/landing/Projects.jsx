@@ -184,7 +184,7 @@ export default function Projects() {
             willChange: "transform",
             userSelect: "none",
             animationPlayState: paused ? "paused" : "running",
-            animation: `marqueeProjects 5000ms linear infinite`,
+            animation: `marqueeProjects 350ms linear infinite`,
           }}
         >
           {doubled.map((p, i) => (
