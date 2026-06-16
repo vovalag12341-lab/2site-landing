@@ -112,7 +112,7 @@ export default function ClientLogos() {
           to   { transform: translateX(-25%); }
         }
         .client-logos-track {
-          animation: clientLogosScroll 350ms linear infinite;
+          animation: clientLogosScroll 1000s linear infinite;
         }
         .client-logos-track:hover {
           animation-play-state: paused;
