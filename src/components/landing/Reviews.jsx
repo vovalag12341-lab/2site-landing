@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Star } from "lucide-react";
 
 const reviews = [
@@ -70,44 +69,43 @@ const reviews = [
 function ReviewCard({ review }) {
   return (
     <div
-      className="flex-shrink-0 rounded-2xl p-5 w-72"
       style={{
+        flex: "0 0 auto",
+        width: "288px",
         background: "#0e0d1a",
         border: "1px solid rgba(124,58,237,0.12)",
+        borderRadius: "16px",
+        padding: "20px",
       }}
     >
-      {/* Google logo + stars */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex gap-0.5">
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
+        <div style={{ display: "flex", gap: "2px" }}>
           {Array.from({ length: review.stars }).map((_, i) => (
-            <Star key={i} size={13} className="fill-yellow-400 text-yellow-400" />
+            <Star key={i} size={13} style={{ fill: "#facc15", color: "#facc15" }} />
           ))}
         </div>
-        <span className="text-xs text-gray-600 font-medium">Google</span>
+        <span style={{ fontSize: "12px", color: "#4b5563", fontWeight: "500" }}>Google</span>
       </div>
-
-      <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">"{review.text}"</p>
-
-      <div className="flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-          style={{ background: `linear-gradient(135deg, ${review.color}, ${review.color}99)` }}>
+      <p style={{ color: "#d1d5db", fontSize: "14px", lineHeight: 1.6, marginBottom: "16px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>"{review.text}"</p>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "12px", fontWeight: "700", flexShrink: 0, background: `linear-gradient(135deg, ${review.color}, ${review.color}99)` }}>
           {review.initials}
         </div>
         <div>
-          <div className="text-white text-xs font-semibold">{review.name}</div>
-          <div className="text-gray-600 text-xs">ביקורת מאומתת</div>
+          <div style={{ color: "#fff", fontSize: "12px", fontWeight: "600" }}>{review.name}</div>
+          <div style={{ color: "#4b5563", fontSize: "12px" }}>ביקורת מאומתת</div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function Reviews() {
-  const [paused, setPaused] = useState(false);
-  const quadrupled = [...reviews, ...reviews, ...reviews, ...reviews];
+// Duplicate twice — animate -50% for seamless loop
+const doubled = [...reviews, ...reviews];
 
+export default function Reviews() {
   return (
-    <section id="reviews" className="py-24 overflow-hidden" style={{ background: "#07070f" }}>
+    <section id="reviews" className="py-24" style={{ background: "#07070f", overflow: "hidden" }}>
       <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
         <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
           style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
@@ -116,42 +114,52 @@ export default function Reviews() {
         <h2 className="text-3xl md:text-5xl font-black text-white mb-3">
           מה הלקוחות <span className="brand-gradient-text">אומרים עלינו</span>
         </h2>
-        <div className="flex items-center justify-center gap-2 mt-4">
-          <div className="flex gap-0.5">
-            {[0,1,2,3,4].map(i => <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />)}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginTop: "16px" }}>
+          <div style={{ display: "flex", gap: "2px" }}>
+            {[0,1,2,3,4].map(i => <Star key={i} size={16} style={{ fill: "#facc15", color: "#facc15" }} />)}
           </div>
-          <span className="text-white font-bold">5.0</span>
-          <span className="text-gray-500 text-sm">· {reviews.length} ביקורות Google</span>
+          <span style={{ color: "#fff", fontWeight: "700" }}>5.0</span>
+          <span style={{ color: "#6b7280", fontSize: "14px" }}>· {reviews.length} ביקורות Google</span>
         </div>
       </div>
 
       <div
-        className="relative overflow-hidden"
         style={{
+          width: "100%",
+          overflow: "hidden",
+          position: "relative",
           maskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%)",
         }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
       >
         <div
+          className="reviews-track"
           style={{
             display: "flex",
+            flexWrap: "nowrap",
             gap: "20px",
             width: "max-content",
             willChange: "transform",
-            animationPlayState: paused ? "paused" : "running",
-            animation: "reviewsMarquee 2500s linear infinite",
+            userSelect: "none",
           }}
         >
-          {quadrupled.map((r, i) => <ReviewCard key={i} review={r} />)}
+          {doubled.map((r, i) => <ReviewCard key={i} review={r} />)}
         </div>
       </div>
 
       <style>{`
         @keyframes reviewsMarquee {
           from { transform: translateX(0); }
-          to   { transform: translateX(-25%); }
+          to   { transform: translateX(-50%); }
+        }
+        .reviews-track {
+          animation: reviewsMarquee 40s linear infinite;
+        }
+        @media (hover: hover) {
+          .reviews-track:hover { animation-play-state: paused; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .reviews-track { animation: none; }
         }
       `}</style>
     </section>

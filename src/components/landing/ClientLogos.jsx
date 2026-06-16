@@ -7,14 +7,13 @@ const logos = [
   { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/8f781817c_image.png", name: "Logo 4" },
   { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/4f6b97708_image.png", name: "Logo 5" },
   { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/d9c281d62_image.png", name: "Logo 8" },
-  // text-only logos
-  { name: "תלפיות", sub: null },
-  { name: "Cardcom", sub: null },
-  { name: "Homely", sub: null },
+  { name: "תלפיות" },
+  { name: "Cardcom" },
+  { name: "Homely" },
   { name: "Elysian", sub: "Softech" },
   { name: "מופון", sub: "ישראל" },
   { name: "ד״ר גילה", sub: "רוזן" },
-  { name: "Top Safe", sub: null },
+  { name: "Top Safe" },
   { name: "Living", sub: "Group" },
   { name: "דרך", sub: "השף" },
   { name: "Global Diving", sub: "Tours" },
@@ -23,109 +22,76 @@ const logos = [
 function LogoItem({ logo }) {
   if (logo.img) {
     return (
-      <div
-        className="flex-shrink-0 flex items-center justify-center logo-item-img"
-        style={{ width: "160px", height: "100px", padding: "0 5px" }}
-      >
+      <div style={{ flex: "0 0 auto", width: "140px", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img
           src={logo.img}
           alt={logo.name}
           draggable={false}
-          style={{
-            maxHeight: "80px",
-            maxWidth: "140px",
-            width: "auto",
-            height: "auto",
-            objectFit: "contain",
-            opacity: 0.9,
-            filter: "none",
-            transition: "opacity 0.3s ease",
-            userSelect: "none",
-          }}
+          style={{ maxHeight: "70px", maxWidth: "130px", width: "auto", height: "auto", objectFit: "contain", opacity: 0.85, userSelect: "none" }}
         />
       </div>
     );
   }
-
   return (
-    <div
-      className="flex-shrink-0 flex flex-col items-center justify-center logo-item-text"
-      style={{ width: "160px", height: "100px", padding: "0 5px", cursor: "default" }}
-    >
-      <div
-        className="px-4 py-2 rounded-xl text-center transition-all duration-300"
-        style={{ border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)" }}
-      >
-        <div className="text-gray-400 font-bold leading-tight" style={{ fontSize: "16px", letterSpacing: "0.03em" }}>
-          {logo.name}
-        </div>
-        {logo.sub && (
-          <div className="text-gray-600 font-medium leading-tight" style={{ fontSize: "13px", letterSpacing: "0.05em" }}>
-            {logo.sub}
-          </div>
-        )}
+    <div style={{ flex: "0 0 auto", width: "140px", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ padding: "8px 12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", textAlign: "center" }}>
+        <div style={{ color: "#9ca3af", fontWeight: "700", fontSize: "15px", lineHeight: 1.2, letterSpacing: "0.03em" }}>{logo.name}</div>
+        {logo.sub && <div style={{ color: "#6b7280", fontWeight: "500", fontSize: "12px", lineHeight: 1.2, letterSpacing: "0.04em" }}>{logo.sub}</div>}
       </div>
     </div>
   );
 }
 
-const GAP = 10;
+// Duplicate twice — animate -50% for seamless loop
+const doubled = [...logos, ...logos];
 
 export default function ClientLogos() {
-  const quadrupled = [...logos, ...logos, ...logos, ...logos];
-
   return (
     <section className="py-14" style={{ background: "#07070f", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)", overflow: "hidden" }}>
       <div className="max-w-6xl mx-auto px-5 mb-8 text-center">
-        <p className="text-gray-500 text-xs tracking-[0.25em] uppercase font-medium">
+        <p style={{ color: "#6b7280", fontSize: "12px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: "500" }}>
           לקוחות מובילים שבחרו ב־2site
         </p>
       </div>
 
       <div
-        className="relative overflow-hidden"
         style={{
+          width: "100%",
+          overflow: "hidden",
+          position: "relative",
           maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
         }}
       >
         <div
-          className="client-logos-track"
+          className="logos-track"
           style={{
             display: "flex",
+            flexWrap: "nowrap",
             alignItems: "center",
-            gap: `${GAP}px`,
+            gap: "16px",
             width: "max-content",
             willChange: "transform",
             userSelect: "none",
           }}
         >
-          {quadrupled.map((logo, i) => (
-            <LogoItem key={i} logo={logo} />
-          ))}
+          {doubled.map((logo, i) => <LogoItem key={i} logo={logo} />)}
         </div>
       </div>
 
       <style>{`
-        @keyframes clientLogosScroll {
+        @keyframes logosMarquee {
           from { transform: translateX(0); }
-          to   { transform: translateX(-25%); }
+          to   { transform: translateX(-50%); }
         }
-        .client-logos-track {
-          animation: clientLogosScroll 2500s linear infinite;
+        .logos-track {
+          animation: logosMarquee 25s linear infinite;
         }
-        .client-logos-track:hover {
-          animation-play-state: paused;
+        @media (hover: hover) {
+          .logos-track:hover { animation-play-state: paused; }
         }
-        .logo-item-img:hover img {
-          opacity: 1 !important;
-        }
-        .logo-item-text > div:hover {
-          border-color: rgba(124,58,237,0.3) !important;
-          background: rgba(124,58,237,0.06) !important;
-        }
-        .logo-item-text > div:hover .text-gray-400 {
-          color: #e5e7eb !important;
+        @media (prefers-reduced-motion: reduce) {
+          .logos-track { animation: none; }
         }
       `}</style>
     </section>
