@@ -178,14 +178,14 @@ export default function Hero() {
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-white leading-tight mb-6"
               style={{ lineHeight: 1.18 }}>
-              אתר מקצועי לעסק שלך —{" "}
+              אתר מקצועי לעסק שלך{" "}
               <span className="brand-gradient-text">
-                בלי כאבי ראש ובלי הוצאה חד־פעמית כבדה
+                כולל ליווי מלא ותחזוקה ללא הגבלה לאחר ההקמה!
               </span>
             </h1>
 
             <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              2site מקימה, מעצבת, מאחסנת ומתחזקת עבורך אתר WordPress מקצועי במודל חודשי — עם צוות אמיתי שמלווה אותך גם אחרי העלייה לאוויר.
+              2site מעצבת לך אתר מרשים בעיצוב אישי — כולל אחסון, אחריות טכנית, דומיין ותחזוקה מלאה לשינויים ועדכונים לאחר ההשקה ללא תשלום נוסף. צוות גדול ומנוסה בעל ניסיון של מאות פרויקטים בין לאומיים.
             </p>
 
             {/* Trust tags */}
