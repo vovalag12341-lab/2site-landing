@@ -1,5 +1,5 @@
 export default function FloatingCTA() {
-  const waLink = "https://wa.me/972515967005";
+  const waLink = "https://wa.me/972515967005?text=" + encodeURIComponent("היי! אני רוצה אתר מדהים לעסק שלי 🚀");
 
   return (
     <>
