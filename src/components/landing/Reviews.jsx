@@ -141,7 +141,7 @@ export default function Reviews() {
             width: "max-content",
             willChange: "transform",
             animationPlayState: paused ? "paused" : "running",
-            animation: "reviewsMarquee 1000s linear infinite",
+            animation: "reviewsMarquee 2500s linear infinite",
           }}
         >
           {quadrupled.map((r, i) => <ReviewCard key={i} review={r} />)}

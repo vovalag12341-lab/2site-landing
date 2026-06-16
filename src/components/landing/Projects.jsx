@@ -182,7 +182,7 @@ export default function Projects() {
             willChange: "transform",
             userSelect: "none",
             animationPlayState: paused ? "paused" : "running",
-            animation: "marqueeProjects 1000s linear infinite",
+            animation: "marqueeProjects 2500s linear infinite",
           }}
         >
           {quadrupled.map((p, i) => (

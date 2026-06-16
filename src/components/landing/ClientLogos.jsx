@@ -25,15 +25,15 @@ function LogoItem({ logo }) {
     return (
       <div
         className="flex-shrink-0 flex items-center justify-center logo-item-img"
-        style={{ width: "400px", height: "200px" }}
+        style={{ width: "160px", height: "100px", padding: "0 5px" }}
       >
         <img
           src={logo.img}
           alt={logo.name}
           draggable={false}
           style={{
-            maxHeight: "180px",
-            maxWidth: "380px",
+            maxHeight: "80px",
+            maxWidth: "140px",
             width: "auto",
             height: "auto",
             objectFit: "contain",
@@ -50,17 +50,17 @@ function LogoItem({ logo }) {
   return (
     <div
       className="flex-shrink-0 flex flex-col items-center justify-center logo-item-text"
-      style={{ width: "400px", height: "200px", cursor: "default" }}
+      style={{ width: "160px", height: "100px", padding: "0 5px", cursor: "default" }}
     >
       <div
         className="px-4 py-2 rounded-xl text-center transition-all duration-300"
         style={{ border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)" }}
       >
-        <div className="text-gray-400 font-bold leading-tight" style={{ fontSize: "24px", letterSpacing: "0.03em" }}>
+        <div className="text-gray-400 font-bold leading-tight" style={{ fontSize: "16px", letterSpacing: "0.03em" }}>
           {logo.name}
         </div>
         {logo.sub && (
-          <div className="text-gray-600 font-medium leading-tight" style={{ fontSize: "20px", letterSpacing: "0.05em" }}>
+          <div className="text-gray-600 font-medium leading-tight" style={{ fontSize: "13px", letterSpacing: "0.05em" }}>
             {logo.sub}
           </div>
         )}
@@ -69,7 +69,7 @@ function LogoItem({ logo }) {
   );
 }
 
-const GAP = 32;
+const GAP = 10;
 
 export default function ClientLogos() {
   const quadrupled = [...logos, ...logos, ...logos, ...logos];
@@ -112,7 +112,7 @@ export default function ClientLogos() {
           to   { transform: translateX(-25%); }
         }
         .client-logos-track {
-          animation: clientLogosScroll 1000s linear infinite;
+          animation: clientLogosScroll 2500s linear infinite;
         }
         .client-logos-track:hover {
           animation-play-state: paused;
