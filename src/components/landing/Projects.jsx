@@ -118,7 +118,7 @@ function ProjectCard({ project }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24" style={{ background: "#05050d" }}>
+    <section id="projects" className="pt-24 pb-2" style={{ background: "#05050d" }}>
       <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
         <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
           style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
