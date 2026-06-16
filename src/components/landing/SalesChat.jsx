@@ -307,10 +307,21 @@ export default function SalesChat() {
           fontWeight: "700",
           fontSize: "14px",
           direction: "rtl",
+          // Mobile: icon only
+          "@media (max-width: 640px)": {
+            padding: "14px",
+            borderRadius: "50%",
+            gap: "0",
+            width: "56px",
+            height: "56px",
+            display: open ? "none" : "flex",
+            justifyContent: "center",
+          }
         }}
+        className="chat-button"
       >
-        <MessageCircle size={18} />
-        <span>צריכים עזרה?</span>
+        <MessageCircle size={18} className="chat-icon" />
+        <span className="chat-text">צריכים עזרה?</span>
         {showBadge && (
           <span style={{
             position: "absolute",
@@ -320,13 +331,14 @@ export default function SalesChat() {
             color: "#fff",
             fontSize: "10px",
             fontWeight: "700",
-            borderRadius: "50px",
-            padding: "2px 8px",
-            whiteSpace: "nowrap",
+            borderRadius: "50%",
+            width: "12px",
+            height: "12px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             boxShadow: "0 2px 8px rgba(236,72,153,0.5)",
-          }}>
-            אפשר לעזור?
-          </span>
+          }} />
         )}
       </button>
 
@@ -513,6 +525,10 @@ export default function SalesChat() {
         @keyframes typingDot {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
           30%            { transform: translateY(-4px); opacity: 1; }
+        }
+        @media (max-width: 640px) {
+          .chat-text { display: none; }
+          .chat-button { width: 56px; height: 56px; padding: 14px; gap: 0; justify-content: center; border-radius: 50%; }
         }
       `}</style>
     </>
