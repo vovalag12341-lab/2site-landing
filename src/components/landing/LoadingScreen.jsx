@@ -38,7 +38,7 @@ export default function LoadingScreen({ onDone }) {
       {/* Logo with pulse glow */}
       <div className="relative mb-8 text-center">
         <img
-          src="https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/9de8e134c_WhatsAppImage2026-06-15at115008.jpeg"
+          src="https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/6e6f6d011_2site_logo_transparent_cropped.png"
           alt="2site"
           className="loading-pulse select-none"
           style={{ width: "220px", height: "auto", objectFit: "contain" }}
