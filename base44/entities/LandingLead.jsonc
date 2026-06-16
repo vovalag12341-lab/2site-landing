@@ -1,0 +1,32 @@
+{
+  "name": "LandingLead",
+  "type": "object",
+  "properties": {
+    "fullName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "businessField": {
+      "type": "string"
+    },
+    "websiteType": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "default": "chatbot"
+    }
+  },
+  "required": [
+    "fullName",
+    "phone"
+  ]
+}

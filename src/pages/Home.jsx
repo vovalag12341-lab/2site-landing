@@ -12,6 +12,7 @@ import Process from "@/components/landing/Process";
 import FAQ from "@/components/landing/FAQ";
 import LeadForm from "@/components/landing/LeadForm";
 import FloatingCTA from "@/components/landing/FloatingCTA";
+import SalesChat from "@/components/landing/SalesChat";
 import AccessibilityWidget from "@/components/landing/AccessibilityWidget";
 import Footer from "@/components/landing/Footer";
 
@@ -113,6 +114,7 @@ export default function Home() {
         <LeadForm />
         <Footer />
         <FloatingCTA />
+        <SalesChat />
         <AccessibilityWidget />
       </div>
     </div>
