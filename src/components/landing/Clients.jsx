@@ -1,18 +1,51 @@
-const clients = [
-  "בית הפנקייק המקורי",
-  "Elysian Softech",
-  "Nadlan FL",
-  "ד״ר גילה רוזן",
-  "מופון ישראל",
-  "הומלי",
-  "Top Safe",
-  "Living Group",
-  "דרך השף",
-  "Global Diving Tours",
+import StableCarousel from "./StableCarousel";
+
+const logos = [
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/2f1c9ef40_image.png", name: "שלמה" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/dbb5f351b_image.png", name: "Dive Assure" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/fa3f62b92_image.png", name: "בית הפנקייק" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/b03fde9da_image.png", name: "אלבר" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/24ffd08b2_image.png", name: "Albar logo 2" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/8f781817c_image.png", name: "Logo 4" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/4f6b97708_image.png", name: "Logo 5" },
+  { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/d9c281d62_image.png", name: "Logo 8" },
+  { name: "תלפיות" },
+  { name: "Cardcom" },
+  { name: "Homely" },
+  { name: "Elysian", sub: "Softech" },
+  { name: "מופון", sub: "ישראל" },
+  { name: "ד״ר גילה", sub: "רוזן" },
+  { name: "Top Safe" },
+  { name: "Living", sub: "Group" },
+  { name: "דרך", sub: "השף" },
+  { name: "Global Diving", sub: "Tours" },
 ];
 
+function LogoItem({ logo }) {
+  if (logo.img) {
+    return (
+      <div style={{ width: "100%", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <img
+          src={logo.img}
+          alt={logo.name}
+          loading="eager"
+          draggable={false}
+          style={{ maxHeight: "65px", maxWidth: "120px", width: "auto", height: "auto", objectFit: "contain", opacity: 0.85 }}
+        />
+      </div>
+    );
+  }
+  return (
+    <div style={{ width: "100%", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ padding: "8px 12px", borderRadius: "10px", border: "1px solid rgba(124,58,237,0.2)", background: "rgba(124,58,237,0.04)", textAlign: "center" }}>
+        <div style={{ color: "#4b5563", fontWeight: "700", fontSize: "14px", lineHeight: 1.2 }}>{logo.name}</div>
+        {logo.sub && <div style={{ color: "#6b7280", fontWeight: "500", fontSize: "11px", lineHeight: 1.2 }}>{logo.sub}</div>}
+      </div>
+    </div>
+  );
+}
+
 export default function Clients() {
-  const doubled = [...clients, ...clients];
   return (
     <section className="py-14 overflow-hidden relative" style={{
       background: "linear-gradient(135deg, #ffffff 0%, #fff5f8 50%, #fffbfc 100%)",
@@ -22,27 +55,22 @@ export default function Clients() {
     }}>
       {/* top gradient line */}
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.6 }} />
-      <div className="max-w-6xl mx-auto px-5 mb-7 text-center">
-        <p className="text-gray-500 text-xs tracking-[0.3em] uppercase font-semibold">
-          מותגים ועסקים שבחרו ב־2site
+      <div className="max-w-6xl mx-auto px-5 mb-8 text-center">
+        <p style={{ color: "#6b7280", fontSize: "12px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: "500" }}>
+          לקוחות מובילים שבחרו ב־2site
         </p>
       </div>
-      <div className="relative overflow-hidden" style={{ maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
-        <div className="marquee-track gap-10 items-center py-1">
-          {doubled.map((name, i) => (
-            <div key={i} className="flex-shrink-0 flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full" style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }} />
-              <span
-                className="font-semibold text-sm whitespace-nowrap cursor-default select-none transition-colors"
-                style={{ color: "#374151" }}
-                onMouseEnter={e => e.target.style.color = "#7c3aed"}
-                onMouseLeave={e => e.target.style.color = "#374151"}
-              >
-                {name}
-              </span>
-            </div>
-          ))}
-        </div>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <StableCarousel
+          items={logos}
+          renderItem={(logo) => <LogoItem logo={logo} />}
+          slidesPerView={{ mobile: 3, tablet: 5, desktop: 6 }}
+          gap={12}
+          autoplayDelay={3000}
+          showArrows={false}
+          showDots={false}
+        />
       </div>
       {/* bottom gradient line */}
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent 0%, #ec4899 30%, #f97fc0 50%, #fbbbce 70%, transparent 100%)", opacity: 0.4 }} />
