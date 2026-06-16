@@ -74,18 +74,7 @@ export default function LeadForm() {
                 </Field>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <Field label="שם העסק">
-                  <input value={form.business} onChange={set("business")} placeholder="שם החברה / עסק"
-                    className={sharedInputClass} style={inputStyle}
-                    onFocus={focusStyle} onBlur={blurStyle} />
-                </Field>
-                <Field label="תחום העסק">
-                  <input value={form.industry} onChange={set("industry")} placeholder="לדוגמה: נדל״ן, בריאות, מסעדנות"
-                    className={sharedInputClass} style={inputStyle}
-                    onFocus={focusStyle} onBlur={blurStyle} />
-                </Field>
-              </div>
+
 
               <Field label="בחירת מתנה">
                 <select value={form.gift} onChange={set("gift")}
