@@ -6,7 +6,6 @@ import Clients from "@/components/landing/Clients";
 import Pricing from "@/components/landing/Pricing";
 import Projects from "@/components/landing/Projects";
 import Benefits from "@/components/landing/Benefits";
-import ClientLogos from "@/components/landing/ClientLogos";
 import Reviews from "@/components/landing/Reviews";
 import Process from "@/components/landing/Process";
 import FAQ from "@/components/landing/FAQ";
@@ -104,7 +103,6 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Clients />
-        <ClientLogos />
         <Pricing />
         <Projects />
         <Benefits />

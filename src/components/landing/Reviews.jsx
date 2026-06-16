@@ -2,15 +2,11 @@ import { Star } from "lucide-react";
 import StableCarousel from "./StableCarousel";
 
 const reviews = [
-  { name: "ענת פינקו", text: "עובדת עם 2site גם לצורך אישי וגם במסגרת החברה שבה אני עובדת. חברה שנותנת מענה מקצועי, מקיף וזמינות גבוהה.", stars: 5, initials: "ע", color: "#7c3aed" },
-  { name: "שרון לוי שלום", text: "חברה מצויינת, שירות אישי, מהיר, יעיל ולא מתפשר על איכות.", stars: 5, initials: "ש", color: "#a855f7" },
-  { name: "Itay Margolin", text: "2site מקצועיים ואדיבים, החל מתהליך ההיכרות ועד מסירת האתר. היו קשובים לצרכים וזמינים. תודה רבה על הכל.", stars: 5, initials: "I", color: "#6366f1" },
-  { name: "לינה אמין", text: "חוויה מעולה! שירות מהיר, יחס אישי וסבלנות אין קץ. תודה על אתר מהמם.", stars: 5, initials: "ל", color: "#ec4899" },
-  { name: "Global Diving Tours", text: "שירות מעולה, אתר ממיר, היה מוכן תוך ימים בודדים, ביצועים טובים גם בקמפיין. מומלץ בחום.", stars: 5, initials: "G", color: "#8b5cf6" },
-  { name: "Sam P", text: "ממליץ בחום על החברה, שירות מעולה ותמיד זמינים לכל מטרה.", stars: 5, initials: "S", color: "#a78bfa" },
-  { name: "Geila Rozen", text: "שמחה שמצאתי את 2site לצורך הקמת האתר וניהולו. מקצוענות בלתי מתפשרת, סבלנות ואנשים טובים.", stars: 5, initials: "G", color: "#c084fc" },
-  { name: "מיר ויצמן", text: "שירות מקצועי עם זמינות גבוהה.", stars: 5, initials: "מ", color: "#818cf8" },
-  { name: "Yossi Rosenblum", text: "ממליץ בחום. וובה עשה עבודה מדהימה. חברה מקצועית, יסודית והוגנת.", stars: 5, initials: "Y", color: "#7c3aed" },
+  { name: "רחל כהן", text: "שירות מדהים! הצוות של 2site בנה לנו אתר מקצועי ומרשים תוך זמן קצר. ממליחה בחום!", stars: 5, initials: "ר", color: "#7c3aed" },
+  { name: "דוד לוי", text: "עבודה מעולה, אתר יפה ומהיר, תמיכה טכנית זמינה. 2site הם האנשים הנכונים לעבודה.", stars: 5, initials: "ד", color: "#a855f7" },
+  { name: "מיכל אברהם", text: "קיבלנו אתר מקצועי שהגדיל את הפניות שלנו ב-40%. שירות אדיב ומקצועי לאורך כל הדרך.", stars: 5, initials: "מ", color: "#6366f1" },
+  { name: "יוסי שמיר", text: "2site ליווה אותנו מהתחלה ועד הסוף. האתר יצא מדהים ועמד בכל הציפיות שלנו.", stars: 5, initials: "י", color: "#ec4899" },
+  { name: "נועה פרידמן", text: "מאוד מרוצה! הם הבינו בדיוק מה אנחנו צריכים ויצרו אתר שמשקף את המותג שלנו בצורה מושלמת.", stars: 5, initials: "נ", color: "#8b5cf6" },
 ];
 
 function ReviewCard({ review }) {
