@@ -22,6 +22,19 @@ export default function Home() {
     <div dir="rtl" style={{ background: "#07070f", minHeight: "100vh" }}>
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
       <div style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
+        {/* Video header - mobile only (Shorts) */}
+        <div className="block md:hidden w-full" style={{ background: "#000", lineHeight: 0 }}>
+          <div style={{ position: "relative", paddingBottom: "177.78%", height: 0, overflow: "hidden" }}>
+            <iframe
+              src="https://www.youtube.com/embed/Yb1z4YMmi64?autoplay=1&mute=1&loop=1&playlist=Yb1z4YMmi64&controls=0&showinfo=0&rel=0&modestbranding=1"
+              title="2site mobile video"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
+        </div>
+
         {/* Video header - desktop only */}
         <div className="hidden md:block w-full relative" style={{ background: "#000", lineHeight: 0 }}>
           <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }}>
