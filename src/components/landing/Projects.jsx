@@ -56,9 +56,9 @@ function ProjectCard({ project }) {
       style={{
         width: "100%",
         height: "220px",
-        background: "#0e0d1a",
-        border: hovered ? "1px solid rgba(124,58,237,0.5)" : "1px solid rgba(124,58,237,0.14)",
-        boxShadow: hovered ? "0 0 40px rgba(124,58,237,0.2)" : "none",
+        background: "#ffffff",
+        border: hovered ? "1px solid rgba(124,58,237,0.4)" : "1px solid rgba(124,58,237,0.12)",
+        boxShadow: hovered ? "0 8px 40px rgba(124,58,237,0.15)" : "0 2px 16px rgba(124,58,237,0.06)",
         transform: hovered ? "translateY(-5px)" : "translateY(0)",
         transition: "all 0.3s ease",
         cursor: project.url ? "pointer" : "default",
@@ -118,16 +118,16 @@ function ProjectCard({ project }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="pt-24 pb-2" style={{ background: "#05050d" }}>
+    <section id="projects" className="pt-24 pb-2" style={{ background: "linear-gradient(180deg, #f3f0ff 0%, #f8f7ff 100%)" }}>
       <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
         <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-          style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+          style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
           פרויקטים אחרונים
         </div>
-        <h2 className="text-3xl md:text-5xl font-black text-white">
+        <h2 className="text-3xl md:text-5xl font-black text-gray-900">
           פרויקטים אחרונים <span className="brand-gradient-text">שבנינו</span>
         </h2>
-        <p className="text-gray-600 text-sm mt-3">לחץ על כרטיס לצפייה באתר החי</p>
+        <p className="text-gray-400 text-sm mt-3">לחץ על כרטיס לצפייה באתר החי</p>
       </div>
 
       <div className="max-w-6xl mx-auto px-10">

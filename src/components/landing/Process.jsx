@@ -23,14 +23,14 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 px-5" style={{ background: "#07070f" }}>
+    <section id="process" className="py-24 px-5" style={{ background: "linear-gradient(180deg, #f8f7ff 0%, #f0f4ff 100%)" }}>
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
             תהליך עבודה
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900">
             איך <span className="brand-gradient-text">זה עובד?</span>
           </h2>
         </div>
@@ -55,8 +55,8 @@ export default function Process() {
                   {s.num}
                 </div>
                 <div className="flex-1 rounded-2xl p-5 card-hover"
-                  style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(124,58,237,0.08)" }}>
-                  <h3 className="text-white font-bold text-base mb-1.5">{s.title}</h3>
+                  style={{ background: "#ffffff", border: "1px solid rgba(124,58,237,0.1)", boxShadow: "0 2px 16px rgba(124,58,237,0.05)" }}>
+                  <h3 className="text-gray-900 font-bold text-base mb-1.5">{s.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
                 </div>
               </div>

@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 
 const inputStyle = {
-  background: "rgba(255,255,255,0.03)",
-  border: "1px solid rgba(124,58,237,0.15)",
-  color: "#fff",
+  background: "#f8f7ff",
+  border: "1px solid rgba(124,58,237,0.2)",
+  color: "#111827",
   fontFamily: "'Heebo', sans-serif",
 };
 
 function Field({ label, children }) {
   return (
     <div>
-      <label className="block text-gray-400 text-xs font-medium mb-1.5">{label}</label>
+      <label className="block text-gray-700 text-xs font-medium mb-1.5">{label}</label>
       {children}
     </div>
   );
@@ -31,18 +31,18 @@ export default function LeadForm() {
   };
 
   const sharedInputClass = "w-full px-4 py-3 rounded-xl text-sm outline-none transition-all";
-  const focusStyle = (e) => (e.target.style.borderColor = "rgba(124,58,237,0.6)");
-  const blurStyle = (e) => (e.target.style.borderColor = "rgba(124,58,237,0.15)");
+  const focusStyle = (e) => (e.target.style.borderColor = "rgba(124,58,237,0.5)");
+  const blurStyle = (e) => (e.target.style.borderColor = "rgba(124,58,237,0.2)");
 
   return (
-    <section id="contact" className="py-24 px-5" style={{ background: "#07070f" }}>
+    <section id="contact" className="py-24 px-5" style={{ background: "linear-gradient(180deg, #f8f7ff 0%, #f3f0ff 100%)" }}>
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
             צור קשר
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-3">
             רוצה לדעת איזו חבילה{" "}
             <span className="brand-gradient-text">מתאימה לעסק שלך?</span>
           </h2>
@@ -52,12 +52,12 @@ export default function LeadForm() {
         </div>
 
         <div className="rounded-3xl p-7 md:p-10"
-          style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(124,58,237,0.18)" }}>
+          style={{ background: "#ffffff", border: "1px solid rgba(124,58,237,0.18)", boxShadow: "0 8px 40px rgba(124,58,237,0.08)" }}>
           {sent ? (
             <div className="text-center py-10">
-              <CheckCircle size={56} className="mx-auto mb-4" style={{ color: "#a78bfa" }} />
-              <h3 className="text-white text-2xl font-black mb-2">קיבלנו!</h3>
-              <p className="text-gray-400">ניצור איתך קשר בהקדם האפשרי. תודה!</p>
+              <CheckCircle size={56} className="mx-auto mb-4" style={{ color: "#7c3aed" }} />
+              <h3 className="text-gray-900 text-2xl font-black mb-2">קיבלנו!</h3>
+              <p className="text-gray-500">ניצור איתך קשר בהקדם האפשרי. תודה!</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -80,11 +80,11 @@ export default function LeadForm() {
                 <select value={form.gift} onChange={set("gift")}
                   className={sharedInputClass + " appearance-none cursor-pointer"} style={inputStyle}
                   onFocus={focusStyle} onBlur={blurStyle}>
-                  <option value="" style={{ background: "#0e0d1a" }}>בחר מתנה</option>
-                  <option value="landing" style={{ background: "#0e0d1a" }}>דף נחיתה לפרסום על בסיס האתר</option>
-                  <option value="ad" style={{ background: "#0e0d1a" }}>פרסומת מקצועית AI — 30 שניות</option>
-                  <option value="posts" style={{ background: "#0e0d1a" }}>סט 10 פוסטים לסושיאל</option>
-                  <option value="crm" style={{ background: "#0e0d1a" }}>התממשקות למועדוני לקוחות לאתרי מכירה</option>
+                  <option value="" style={{ background: "#fff" }}>בחר מתנה</option>
+                  <option value="landing" style={{ background: "#fff" }}>דף נחיתה לפרסום על בסיס האתר</option>
+                  <option value="ad" style={{ background: "#fff" }}>פרסומת מקצועית AI — 30 שניות</option>
+                  <option value="posts" style={{ background: "#fff" }}>סט 10 פוסטים לסושיאל</option>
+                  <option value="crm" style={{ background: "#fff" }}>התממשקות למועדוני לקוחות לאתרי מכירה</option>
                 </select>
               </Field>
 
@@ -92,12 +92,12 @@ export default function LeadForm() {
                 <select value={form.pkg} onChange={set("pkg")}
                   className={sharedInputClass + " appearance-none cursor-pointer"} style={inputStyle}
                   onFocus={focusStyle} onBlur={blurStyle}>
-                  <option value="" style={{ background: "#0e0d1a" }}>בחר מסלול</option>
-                  <option value="starter" style={{ background: "#0e0d1a" }}>אתר תוכן / תדמית — ₪450/חודש</option>
-                  <option value="shop" style={{ background: "#0e0d1a" }}>אתר מכירות / קטלוג — ₪900/חודש</option>
-                  <option value="pro" style={{ background: "#0e0d1a" }}>תוכן מורחב + SEO — ₪900/חודש</option>
-                  <option value="extra" style={{ background: "#0e0d1a" }}>Extra SEO — ₪1,200/חודש</option>
-                  <option value="unsure" style={{ background: "#0e0d1a" }}>לא בטוח, דברו איתי</option>
+                  <option value="" style={{ background: "#fff" }}>בחר מסלול</option>
+                  <option value="starter" style={{ background: "#fff" }}>אתר תוכן / תדמית — ₪450/חודש</option>
+                  <option value="shop" style={{ background: "#fff" }}>אתר מכירות / קטלוג — ₪900/חודש</option>
+                  <option value="pro" style={{ background: "#fff" }}>תוכן מורחב + SEO — ₪900/חודש</option>
+                  <option value="extra" style={{ background: "#fff" }}>Extra SEO — ₪1,200/חודש</option>
+                  <option value="unsure" style={{ background: "#fff" }}>לא בטוח, דברו איתי</option>
                 </select>
               </Field>
 

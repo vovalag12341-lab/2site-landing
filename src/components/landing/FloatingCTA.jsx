@@ -20,7 +20,7 @@ export default function FloatingCTA() {
     <>
       {/* Mobile sticky CTA */}
       <div className="md:hidden fixed bottom-0 inset-x-0 z-40 px-4 pb-5 pt-3"
-        style={{ background: "linear-gradient(to top, #07070f 60%, transparent)" }}>
+        style={{ background: "linear-gradient(to top, #f8f7ff 60%, transparent)" }}>
         <a href="#contact"
           className="block w-full text-center cta-btn text-white font-black py-4 rounded-2xl text-base"
           style={{ boxShadow: "0 8px 30px rgba(124,58,237,0.4)" }}>

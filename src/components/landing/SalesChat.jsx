@@ -341,12 +341,12 @@ export default function SalesChat() {
             zIndex: 9999,
             width: "clamp(320px, 95vw, 380px)",
             height: "clamp(400px, 85vh, 560px)",
-            background: "#0e0d1a",
-            border: "1px solid rgba(124,58,237,0.3)",
+            background: "#ffffff",
+            border: "1px solid rgba(124,58,237,0.2)",
             borderRadius: "20px",
             display: "flex",
             flexDirection: "column",
-            boxShadow: "0 8px 40px rgba(124,58,237,0.3), 0 2px 8px rgba(0,0,0,0.6)",
+            boxShadow: "0 16px 60px rgba(124,58,237,0.18), 0 2px 8px rgba(0,0,0,0.08)",
             animation: "chatSlideUp 0.28s ease",
             overflow: "hidden",
             fontFamily: "'Heebo', sans-serif",
@@ -403,7 +403,7 @@ export default function SalesChat() {
                   whiteSpace: "pre-wrap",
                   ...(msg.role === "user"
                     ? { background: "linear-gradient(135deg,#7c3aed,#a855f7)", color: "#fff" }
-                    : { background: "#1a1828", border: "1px solid rgba(124,58,237,0.2)", color: "#e2e8f0" }
+                    : { background: "#f8f7ff", border: "1px solid rgba(124,58,237,0.12)", color: "#1f2937" }
                   ),
                 }}>
                   {msg.text}
@@ -413,7 +413,7 @@ export default function SalesChat() {
 
             {typing && (
               <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <div style={{ background: "#1a1828", border: "1px solid rgba(124,58,237,0.2)", borderRadius: "4px 16px 16px 16px", padding: "12px 16px", display: "flex", gap: "4px", alignItems: "center" }}>
+                <div style={{ background: "#f8f7ff", border: "1px solid rgba(124,58,237,0.12)", borderRadius: "4px 16px 16px 16px", padding: "12px 16px", display: "flex", gap: "4px", alignItems: "center" }}>
                   {[0,1,2].map(i => (
                     <span key={i} style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#a78bfa", display: "inline-block", animation: `typingDot 1.2s ease-in-out ${i * 0.2}s infinite` }} />
                   ))}
@@ -454,7 +454,8 @@ export default function SalesChat() {
           {showInput && (
             <form onSubmit={handleLeadInput} style={{
               padding: "12px 16px",
-              borderTop: "1px solid rgba(124,58,237,0.15)",
+              borderTop: "1px solid rgba(124,58,237,0.1)",
+              background: "#fff",
               display: "flex",
               gap: "8px",
               flexShrink: 0,
@@ -467,11 +468,11 @@ export default function SalesChat() {
                 type={LEAD_FIELDS[leadStep]?.type || "text"}
                 style={{
                   flex: 1,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(124,58,237,0.25)",
+                  background: "#f8f7ff",
+                  border: "1px solid rgba(124,58,237,0.2)",
                   borderRadius: "12px",
                   padding: "10px 14px",
-                  color: "#fff",
+                  color: "#111827",
                   fontSize: "13px",
                   fontFamily: "'Heebo', sans-serif",
                   outline: "none",

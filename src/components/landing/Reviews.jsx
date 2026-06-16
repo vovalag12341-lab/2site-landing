@@ -17,10 +17,11 @@ function ReviewCard({ review }) {
   return (
     <div style={{
       width: "100%",
-      background: "#0e0d1a",
-      border: "1px solid rgba(124,58,237,0.12)",
+      background: "#ffffff",
+      border: "1px solid rgba(124,58,237,0.1)",
       borderRadius: "16px",
       padding: "20px",
+      boxShadow: "0 2px 16px rgba(124,58,237,0.06)",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
         <div style={{ display: "flex", gap: "2px" }}>
@@ -28,9 +29,9 @@ function ReviewCard({ review }) {
             <Star key={i} size={13} style={{ fill: "#facc15", color: "#facc15" }} />
           ))}
         </div>
-        <span style={{ fontSize: "12px", color: "#4b5563", fontWeight: "500" }}>Google</span>
+        <span style={{ fontSize: "12px", color: "#9ca3af", fontWeight: "500" }}>Google</span>
       </div>
-      <p style={{ color: "#d1d5db", fontSize: "14px", lineHeight: 1.6, marginBottom: "16px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+      <p style={{ color: "#374151", fontSize: "14px", lineHeight: 1.6, marginBottom: "16px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         "{review.text}"
       </p>
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -38,8 +39,8 @@ function ReviewCard({ review }) {
           {review.initials}
         </div>
         <div>
-          <div style={{ color: "#fff", fontSize: "12px", fontWeight: "600" }}>{review.name}</div>
-          <div style={{ color: "#4b5563", fontSize: "12px" }}>ביקורת מאומתת</div>
+          <div style={{ color: "#111827", fontSize: "12px", fontWeight: "600" }}>{review.name}</div>
+          <div style={{ color: "#9ca3af", fontSize: "12px" }}>ביקורת מאומתת</div>
         </div>
       </div>
     </div>
@@ -48,20 +49,20 @@ function ReviewCard({ review }) {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-24" style={{ background: "#07070f" }}>
+    <section id="reviews" className="py-24" style={{ background: "linear-gradient(180deg, #f8f7ff 0%, #f3f0ff 100%)" }}>
       <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
         <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-          style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+          style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
           ביקורות Google
         </div>
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-3">
+        <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-3">
           מה הלקוחות <span className="brand-gradient-text">אומרים עלינו</span>
         </h2>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginTop: "16px" }}>
           <div style={{ display: "flex", gap: "2px" }}>
             {[0,1,2,3,4].map(i => <Star key={i} size={16} style={{ fill: "#facc15", color: "#facc15" }} />)}
           </div>
-          <span style={{ color: "#fff", fontWeight: "700" }}>5.0</span>
+          <span style={{ color: "#111", fontWeight: "700" }}>5.0</span>
           <span style={{ color: "#6b7280", fontSize: "14px" }}>· {reviews.length} ביקורות Google</span>
         </div>
       </div>

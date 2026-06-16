@@ -14,7 +14,7 @@ const clients = [
 export default function Clients() {
   const doubled = [...clients, ...clients];
   return (
-    <section className="py-16 overflow-hidden" style={{ background: "#07070f", borderTop: "1px solid rgba(124,58,237,0.08)", borderBottom: "1px solid rgba(124,58,237,0.08)" }}>
+    <section className="py-16 overflow-hidden" style={{ background: "#0d0b1a", borderTop: "1px solid rgba(124,58,237,0.08)", borderBottom: "1px solid rgba(124,58,237,0.08)" }}>
       <div className="max-w-6xl mx-auto px-5 mb-8 text-center">
         <p className="text-gray-600 text-xs tracking-[0.3em] uppercase font-medium">
           מותגים ועסקים שבחרו ב־2site

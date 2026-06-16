@@ -33,14 +33,14 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section className="py-24 px-5" style={{ background: "#05050d" }}>
+    <section className="py-24 px-5" style={{ background: "linear-gradient(180deg, #f3f0ff 0%, #f8f7ff 100%)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
             למה 2site
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900">
             למה עסקים <span className="brand-gradient-text">בוחרים בנו</span>
           </h2>
         </div>
@@ -50,11 +50,12 @@ export default function Benefits() {
             <div key={b.title}
               className="rounded-2xl p-6 card-hover"
               style={{
-                background: "rgba(255,255,255,0.02)",
+                background: "#ffffff",
                 border: "1px solid rgba(124,58,237,0.1)",
+                boxShadow: "0 2px 16px rgba(124,58,237,0.05)",
               }}>
               <div className="text-3xl mb-4">{b.icon}</div>
-              <h3 className="text-white font-bold text-base mb-2">{b.title}</h3>
+              <h3 className="text-gray-900 font-bold text-base mb-2">{b.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
             </div>
           ))}

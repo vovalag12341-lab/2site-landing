@@ -73,14 +73,14 @@ const packages = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="pt-24 pb-2 px-5" style={{ background: "#07070f" }}>
+    <section id="pricing" className="pt-24 pb-2 px-5" style={{ background: "linear-gradient(180deg, #f8f7ff 0%, #f3f0ff 100%)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+            style={{ background: "rgba(124,58,237,0.08)", border: "1px solid rgba(124,58,237,0.18)", color: "#7c3aed" }}>
             חבילות WordPress
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">
             השקעה שמחזירה <span className="brand-gradient-text">את עצמה</span>
           </h2>
           <p className="text-gray-500 text-base max-w-lg mx-auto">
@@ -94,20 +94,16 @@ export default function Pricing() {
               className="relative rounded-2xl p-6 card-hover flex flex-col"
               style={{
                 background: pkg.popular
-                  ? "linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(236,72,153,0.06) 100%)"
-                  : pkg.id === "shop"
-                  ? "linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.05) 100%)"
-                  : "rgba(255,255,255,0.02)",
+                  ? "linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(236,72,153,0.04) 100%)"
+                  : "#ffffff",
                 border: pkg.popular
-                  ? "1px solid rgba(124,58,237,0.45)"
+                  ? "1px solid rgba(124,58,237,0.4)"
                   : pkg.id === "shop"
-                  ? "1px solid rgba(99,102,241,0.3)"
-                  : "1px solid rgba(255,255,255,0.06)",
+                  ? "1px solid rgba(99,102,241,0.25)"
+                  : "1px solid rgba(124,58,237,0.1)",
                 boxShadow: pkg.popular
-                  ? "0 0 50px rgba(124,58,237,0.12)"
-                  : pkg.id === "shop"
-                  ? "0 0 30px rgba(99,102,241,0.08)"
-                  : "none",
+                  ? "0 8px 40px rgba(124,58,237,0.15)"
+                  : "0 2px 16px rgba(124,58,237,0.06)",
               }}>
               {pkg.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-white text-xs font-black px-5 py-1.5 rounded-full cta-btn">
@@ -122,12 +118,12 @@ export default function Pricing() {
               )}
 
               <div className="mb-5">
-                <h3 className="text-white font-black text-lg mb-1 leading-tight">{pkg.name}</h3>
+                <h3 className="text-gray-900 font-black text-lg mb-1 leading-tight">{pkg.name}</h3>
                 {pkg.subtitle && (
                   <p className="text-gray-500 text-xs mb-3 leading-relaxed">{pkg.subtitle}</p>
                 )}
                 <div className="flex items-end gap-1 mb-1">
-                  <span className="text-3xl font-black text-white">₪{pkg.price}</span>
+                  <span className="text-3xl font-black text-gray-900">₪{pkg.price}</span>
                   <span className="text-gray-500 text-xs mb-1.5">/ חודש + מע״מ</span>
                 </div>
                 <p className="text-xs font-medium" style={{ color: pkg.id === "shop" ? "#818cf8" : "#7c3aed" }}>{pkg.note}</p>
@@ -135,7 +131,7 @@ export default function Pricing() {
 
               <ul className="space-y-2.5 flex-1 mb-6">
                 {pkg.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-xs text-gray-300 leading-relaxed">
+                  <li key={f} className="flex items-start gap-2 text-xs text-gray-600 leading-relaxed">
                     <Check size={12} className="mt-0.5 flex-shrink-0" style={{ color: pkg.id === "shop" ? "#818cf8" : "#a78bfa" }} />
                     {f}
                   </li>
@@ -149,8 +145,8 @@ export default function Pricing() {
                     ? "linear-gradient(135deg,#7c3aed,#a855f7,#ec4899)"
                     : pkg.id === "shop"
                     ? "linear-gradient(135deg,#6366f1,#8b5cf6)"
-                    : "rgba(124,58,237,0.12)",
-                  color: (pkg.popular || pkg.id === "shop") ? "#fff" : "#a78bfa",
+                    : "rgba(124,58,237,0.08)",
+                  color: (pkg.popular || pkg.id === "shop") ? "#fff" : "#7c3aed",
                   border: (pkg.popular || pkg.id === "shop") ? "none" : "1px solid rgba(124,58,237,0.2)",
                 }}>
                 {pkg.cta}
@@ -159,7 +155,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="text-center text-gray-600 text-xs mt-8">
+        <p className="text-center text-gray-400 text-xs mt-8">
           * המחירים עשויים להשתנות בהתאם לאפיון, היקף האתר וצרכי העסק.
         </p>
       </div>
