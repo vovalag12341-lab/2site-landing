@@ -29,7 +29,9 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
-        <a href="#" className="text-2xl font-black brand-gradient-text">2site</a>
+        <a href="#">
+          <img src="https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/a96e9efdd_2site_logo_transparent_cropped.png" alt="2site" style={{ height: "48px", width: "auto", objectFit: "contain" }} />
+        </a>
 
         <nav className="hidden md:flex items-center gap-7">
           {links.map((l) => (

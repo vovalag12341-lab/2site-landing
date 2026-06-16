@@ -4,8 +4,7 @@ export default function Footer() {
       style={{ background: "#03020a", borderTop: "1px solid rgba(124,58,237,0.08)" }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5">
         <div className="text-right">
-          <div className="text-2xl font-black brand-gradient-text mb-0.5">2site</div>
-          <div className="text-gray-600 text-xs">בניית אתרי WordPress מקצועית</div>
+          <img src="https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/a96e9efdd_2site_logo_transparent_cropped.png" alt="2site" style={{ height: "60px", width: "auto", objectFit: "contain" }} />
         </div>
         <div className="flex gap-7 text-sm text-gray-600">
           <a href="#pricing" className="hover:text-gray-300 transition-colors">חבילות</a>
