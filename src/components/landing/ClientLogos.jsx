@@ -110,7 +110,7 @@ export default function ClientLogos() {
 
       <style>{`
         .client-logos-track {
-          animation: clientLogosScroll ${logos.length * 5}s linear infinite;
+          animation: clientLogosScroll 5s linear infinite;
         }
         .client-logos-track:hover {
           animation-play-state: paused;
