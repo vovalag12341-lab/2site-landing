@@ -1,3 +1,5 @@
+import StableCarousel from "./StableCarousel";
+
 const logos = [
   { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/2f1c9ef40_image.png", name: "שלמה" },
   { img: "https://media.base44.com/images/public/6a2fb5817da3de73a8100bb8/dbb5f351b_image.png", name: "Dive Assure" },
@@ -22,78 +24,47 @@ const logos = [
 function LogoItem({ logo }) {
   if (logo.img) {
     return (
-      <div style={{ flex: "0 0 auto", width: "140px", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ width: "100%", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img
           src={logo.img}
           alt={logo.name}
+          loading="eager"
           draggable={false}
-          style={{ maxHeight: "70px", maxWidth: "130px", width: "auto", height: "auto", objectFit: "contain", opacity: 0.85, userSelect: "none" }}
+          style={{ maxHeight: "65px", maxWidth: "120px", width: "auto", height: "auto", objectFit: "contain", opacity: 0.85 }}
         />
       </div>
     );
   }
   return (
-    <div style={{ flex: "0 0 auto", width: "140px", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ width: "100%", height: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div style={{ padding: "8px 12px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.02)", textAlign: "center" }}>
-        <div style={{ color: "#9ca3af", fontWeight: "700", fontSize: "15px", lineHeight: 1.2, letterSpacing: "0.03em" }}>{logo.name}</div>
-        {logo.sub && <div style={{ color: "#6b7280", fontWeight: "500", fontSize: "12px", lineHeight: 1.2, letterSpacing: "0.04em" }}>{logo.sub}</div>}
+        <div style={{ color: "#9ca3af", fontWeight: "700", fontSize: "14px", lineHeight: 1.2 }}>{logo.name}</div>
+        {logo.sub && <div style={{ color: "#6b7280", fontWeight: "500", fontSize: "11px", lineHeight: 1.2 }}>{logo.sub}</div>}
       </div>
     </div>
   );
 }
 
-// Duplicate twice — animate -50% for seamless loop
-const doubled = [...logos, ...logos];
-
 export default function ClientLogos() {
   return (
-    <section className="py-14" style={{ background: "#07070f", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)", overflow: "hidden" }}>
+    <section className="py-14" style={{ background: "#07070f", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
       <div className="max-w-6xl mx-auto px-5 mb-8 text-center">
         <p style={{ color: "#6b7280", fontSize: "12px", letterSpacing: "0.25em", textTransform: "uppercase", fontWeight: "500" }}>
           לקוחות מובילים שבחרו ב־2site
         </p>
       </div>
 
-      <div
-        style={{
-          width: "100%",
-          overflow: "hidden",
-          position: "relative",
-          maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
-        }}
-      >
-        <div
-          className="logos-track"
-          style={{
-            display: "flex",
-            flexWrap: "nowrap",
-            alignItems: "center",
-            gap: "16px",
-            width: "max-content",
-            willChange: "transform",
-            userSelect: "none",
-          }}
-        >
-          {doubled.map((logo, i) => <LogoItem key={i} logo={logo} />)}
-        </div>
+      <div className="max-w-6xl mx-auto px-10">
+        <StableCarousel
+          items={logos}
+          renderItem={(logo) => <LogoItem logo={logo} />}
+          slidesPerView={{ mobile: 3, tablet: 5, desktop: 6 }}
+          gap={12}
+          autoplayDelay={3000}
+          showArrows={false}
+          showDots={false}
+        />
       </div>
-
-      <style>{`
-        @keyframes logosMarquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .logos-track {
-          animation: logosMarquee 25s linear infinite;
-        }
-        @media (hover: hover) {
-          .logos-track:hover { animation-play-state: paused; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .logos-track { animation: none; }
-        }
-      `}</style>
     </section>
   );
 }

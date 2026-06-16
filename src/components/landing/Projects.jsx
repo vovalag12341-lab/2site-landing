@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, Clock } from "lucide-react";
+import StableCarousel from "./StableCarousel";
 
 const projects = [
   {
@@ -50,11 +51,10 @@ function ProjectCard({ project }) {
   const [hovered, setHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const cardContent = (
+  const card = (
     <div
       style={{
-        flex: "0 0 auto",
-        width: "300px",
+        width: "100%",
         height: "220px",
         background: "#0e0d1a",
         border: hovered ? "1px solid rgba(124,58,237,0.5)" : "1px solid rgba(124,58,237,0.14)",
@@ -73,20 +73,21 @@ function ProjectCard({ project }) {
         <img
           src={project.image}
           alt={project.name}
+          loading="eager"
+          draggable={false}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
           onError={() => setImgError(true)}
-          draggable={false}
         />
       ) : (
-        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(168,85,247,0.10) 50%, rgba(236,72,153,0.08) 100%)" }}>
+        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, rgba(124,58,237,0.18), rgba(236,72,153,0.08))" }}>
           <div style={{ textAlign: "center", padding: "0 16px" }}>
             <div style={{ fontSize: "32px", marginBottom: "8px" }}>🌐</div>
-            <div style={{ color: "#fff", fontWeight: "700", fontSize: "12px", lineHeight: 1.3 }}>{project.name}</div>
+            <div style={{ color: "#fff", fontWeight: "700", fontSize: "12px" }}>{project.name}</div>
             <div style={{ color: "#a78bfa", fontSize: "12px", marginTop: "4px" }}>בניית אתרים</div>
           </div>
         </div>
       )}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(7,7,15,0.97) 0%, rgba(7,7,15,0.55) 40%, rgba(7,7,15,0.08) 70%, transparent 100%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(7,7,15,0.97) 0%, rgba(7,7,15,0.55) 40%, transparent 100%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "12px 16px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
         <div>
           <div style={{ color: "#fff", fontWeight: "700", fontSize: "13px", lineHeight: 1.3, marginBottom: "2px" }}>{project.name}</div>
@@ -94,13 +95,11 @@ function ProjectCard({ project }) {
         </div>
         {project.url ? (
           <div style={{ color: hovered ? "#a78bfa" : "#6b7280", fontSize: "10px", display: "flex", alignItems: "center", gap: "4px", flexShrink: 0, marginRight: "8px" }}>
-            <span>צפייה באתר החי</span>
-            <ExternalLink size={10} />
+            <span>צפייה באתר החי</span><ExternalLink size={10} />
           </div>
         ) : (
           <div style={{ color: "#4b5563", fontSize: "10px", display: "flex", alignItems: "center", gap: "4px", flexShrink: 0, marginRight: "8px" }}>
-            <Clock size={10} />
-            <span>קישור יתווסף בקרוב</span>
+            <Clock size={10} /><span>קישור יתווסף בקרוב</span>
           </div>
         )}
       </div>
@@ -109,73 +108,39 @@ function ProjectCard({ project }) {
 
   if (project.url) {
     return (
-      <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ flex: "0 0 auto", textDecoration: "none" }}>
-        {cardContent}
+      <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", textDecoration: "none" }}>
+        {card}
       </a>
     );
   }
-  return <div style={{ flex: "0 0 auto" }}>{cardContent}</div>;
+  return card;
 }
-
-// Duplicate the set twice — track = 2 identical halves, animate -50% to loop seamlessly
-const doubled = [...projects, ...projects];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24" style={{ background: "#05050d", overflow: "hidden" }}>
-      <div className="max-w-6xl mx-auto px-5 mb-12">
-        <div className="text-center">
-          <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
-            style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
-            פרויקטים אחרונים
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white">
-            פרויקטים אחרונים <span className="brand-gradient-text">שבנינו</span>
-          </h2>
-          <p className="text-gray-600 text-sm mt-3">לחץ על כרטיס לצפייה באתר החי</p>
+    <section id="projects" className="py-24" style={{ background: "#05050d" }}>
+      <div className="max-w-6xl mx-auto px-5 mb-12 text-center">
+        <div className="inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-4"
+          style={{ background: "rgba(124,58,237,0.1)", border: "1px solid rgba(124,58,237,0.2)", color: "#a78bfa" }}>
+          פרויקטים אחרונים
         </div>
+        <h2 className="text-3xl md:text-5xl font-black text-white">
+          פרויקטים אחרונים <span className="brand-gradient-text">שבנינו</span>
+        </h2>
+        <p className="text-gray-600 text-sm mt-3">לחץ על כרטיס לצפייה באתר החי</p>
       </div>
 
-      <div
-        style={{
-          width: "100%",
-          overflow: "hidden",
-          position: "relative",
-          maskImage: "linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%)",
-        }}
-      >
-        <div
-          className="projects-track"
-          style={{
-            display: "flex",
-            flexWrap: "nowrap",
-            gap: "20px",
-            width: "max-content",
-            willChange: "transform",
-            userSelect: "none",
-            padding: "16px 0",
-          }}
-        >
-          {doubled.map((p, i) => <ProjectCard key={i} project={p} />)}
-        </div>
+      <div className="max-w-6xl mx-auto px-10">
+        <StableCarousel
+          items={projects}
+          renderItem={(project) => <ProjectCard project={project} />}
+          slidesPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+          gap={20}
+          autoplayDelay={3000}
+          showArrows={true}
+          showDots={true}
+        />
       </div>
-
-      <style>{`
-        @keyframes projectsMarquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .projects-track {
-          animation: projectsMarquee 30s linear infinite;
-        }
-        @media (hover: hover) {
-          .projects-track:hover { animation-play-state: paused; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .projects-track { animation: none; }
-        }
-      `}</style>
     </section>
   );
 }
